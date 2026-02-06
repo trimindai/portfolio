@@ -43,60 +43,78 @@ body {
 }
 
 @media print {
-  *, *::before, *::after {
-    -webkit-print-color-adjust: exact !important;
-    print-color-adjust: exact !important;
-    animation: none !important;
-    transition: none !important;
-  }
-  body { background: #0a1628 !important; }
+  *, *::before, *::after { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
 
-  /* Hide non-CV elements */
-  nav, .grain, .ambient-orb, .hero-actions, .contact-form,
+  body { background: #0a1628 !important; margin: 0 !important; }
+
+  /* Each section = exactly one printed page */
+  section {
+    page-break-after: always !important;
+    page-break-inside: avoid !important;
+    min-height: 100vh !important;
+    height: 100vh !important;
+    max-height: 100vh !important;
+    overflow: hidden !important;
+    padding: 48px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    box-sizing: border-box !important;
+  }
+
+  /* Hero special handling */
+  #hero {
+    padding-top: 48px !important;
+    justify-content: center !important;
+  }
+
+  /* Last section no page break */
+  #contact { page-break-after: auto !important; }
+
+  /* Combine certs + approach on one page */
+  #certs {
+    page-break-after: avoid !important;
+    min-height: auto !important;
+    height: auto !important;
+    max-height: 50vh !important;
+    padding: 36px 48px 16px !important;
+  }
+  #approach {
+    page-break-before: avoid !important;
+    min-height: auto !important;
+    height: auto !important;
+    max-height: 50vh !important;
+    padding: 16px 48px 36px !important;
+  }
+
+  /* Hide non-print elements */
+  nav, .grain, .hero-actions, .contact-form, footer,
   .fixed.rounded-full { display: none !important; }
 
-  /* Compact all sections */
-  section { padding: 30px 48px !important; min-height: auto !important; }
+  /* Force all reveals visible */
+  .reveal, [class*="opacity-0"] { opacity: 1 !important; transform: none !important; }
 
-  /* Hero: no full-page height, tight spacing */
-  #hero {
-    min-height: auto !important;
-    padding-top: 30px !important;
-    padding-bottom: 10px !important;
-    align-items: flex-start !important;
-  }
+  /* Ensure grids stay compact */
+  .grid { gap: 12px !important; }
 
-  /* Force hero photo side-by-side with text */
-  .hero-layout {
-    grid-template-columns: 1fr 200px !important;
-    gap: 24px !important;
-  }
+  /* Smaller hero heading for print */
+  h1 { font-size: 48px !important; }
+  h2 { font-size: 28px !important; }
 
-  /* Smaller hero photo in print */
-  .hero-layout img {
-    width: 180px !important;
-    height: 220px !important;
-  }
+  /* Photo sizing */
+  #hero img { width: 180px !important; height: 220px !important; }
 
-  /* Smaller hero title */
-  #hero h1 { font-size: 48px !important; margin-bottom: 16px !important; }
-  #hero p { margin-bottom: 20px !important; }
+  /* Competency bars show full width */
+  [class*="comp-bar"], [style*="width"] { transition: none !important; }
 
-  /* Compact metrics row */
-  #hero .flex.gap-14 {
-    margin-top: 24px !important;
-    padding-top: 16px !important;
-    gap: 32px !important;
-  }
+  /* Section label compact */
+  .mb-14 { margin-bottom: 20px !important; }
 
-  /* Tighten all grid gaps */
-  .grid { gap: 16px !important; }
+  /* Experience cards compact */
+  #experience [class*="p-12"] { padding: 20px !important; }
 
-  /* Reduce section label spacing */
-  .flex.items-center.gap-5.mb-14 { margin-bottom: 20px !important; }
-
-  /* Footer compact */
-  footer { break-inside: avoid; padding: 20px 48px !important; }
+  /* Value cards compact */
+  #value [class*="p-12"] { padding: 24px !important; }
 }
 
 /* Applied by JS before printing to force all content visible */
