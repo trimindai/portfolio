@@ -50,10 +50,53 @@ body {
     transition: none !important;
   }
   body { background: #0a1628 !important; }
-  section { padding: 40px 48px 30px !important; min-height: auto !important; break-inside: avoid; }
-  #hero { min-height: auto !important; padding-top: 40px !important; }
-  nav, .grain, .ambient-orb, .hero-actions, .contact-form { display: none !important; }
-  footer { break-inside: avoid; }
+
+  /* Hide non-CV elements */
+  nav, .grain, .ambient-orb, .hero-actions, .contact-form,
+  .fixed.rounded-full { display: none !important; }
+
+  /* Compact all sections */
+  section { padding: 30px 48px !important; min-height: auto !important; }
+
+  /* Hero: no full-page height, tight spacing */
+  #hero {
+    min-height: auto !important;
+    padding-top: 30px !important;
+    padding-bottom: 10px !important;
+    align-items: flex-start !important;
+  }
+
+  /* Force hero photo side-by-side with text */
+  .hero-layout {
+    grid-template-columns: 1fr 200px !important;
+    gap: 24px !important;
+  }
+
+  /* Smaller hero photo in print */
+  .hero-layout img {
+    width: 180px !important;
+    height: 220px !important;
+  }
+
+  /* Smaller hero title */
+  #hero h1 { font-size: 48px !important; margin-bottom: 16px !important; }
+  #hero p { margin-bottom: 20px !important; }
+
+  /* Compact metrics row */
+  #hero .flex.gap-14 {
+    margin-top: 24px !important;
+    padding-top: 16px !important;
+    gap: 32px !important;
+  }
+
+  /* Tighten all grid gaps */
+  .grid { gap: 16px !important; }
+
+  /* Reduce section label spacing */
+  .flex.items-center.gap-5.mb-14 { margin-bottom: 20px !important; }
+
+  /* Footer compact */
+  footer { break-inside: avoid; padding: 20px 48px !important; }
 }
 
 /* Applied by JS before printing to force all content visible */
@@ -66,9 +109,7 @@ body.printing-cv * {
 body.printing-cv nav,
 body.printing-cv .grain,
 body.printing-cv .hero-actions,
-body.printing-cv .contact-form {
-  display: none !important;
-}
+body.printing-cv .contact-form,
 body.printing-cv .fixed.rounded-full {
   display: none !important;
 }

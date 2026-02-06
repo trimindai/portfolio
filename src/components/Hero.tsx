@@ -25,7 +25,7 @@ export default function Hero() {
   return (
     <section id="hero" className="relative z-[1] min-h-screen flex items-center pt-[100px] px-6 md:px-12">
       <div className="max-w-[1060px] mx-auto w-full">
-        <div className="grid grid-cols-1 lg:grid-cols-[1fr_320px] gap-10 lg:gap-16 items-center">
+        <div className="hero-layout grid grid-cols-1 lg:grid-cols-[1fr_320px] gap-10 lg:gap-16 items-center">
           {/* Text */}
           <div>
             <div
