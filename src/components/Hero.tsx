@@ -1,12 +1,60 @@
 "use client";
 import Image from "next/image";
+import { useState } from "react";
 
 export default function Hero() {
+  const [downloading, setDownloading] = useState(false);
+
   const handleDownload = () => {
-    const link = document.createElement("a");
-    link.href = "/Othman_Alzanki_CV.pdf";
-    link.download = "Othman_Alzanki_CV.pdf";
-    link.click();
+    setDownloading(true);
+
+    // Hide elements we don't want in PDF
+    const nav = document.querySelector("nav");
+    const grain = document.querySelector(".grain");
+    const orbs = document.querySelectorAll(".ambient-orb");
+    const heroActions = document.querySelector(".hero-actions");
+    const contactForm = document.querySelector(".contact-form");
+
+    if (nav) (nav as HTMLElement).style.display = "none";
+    if (grain) (grain as HTMLElement).style.display = "none";
+    orbs.forEach((o) => ((o as HTMLElement).style.display = "none"));
+    if (heroActions) (heroActions as HTMLElement).style.display = "none";
+    if (contactForm) (contactForm as HTMLElement).style.display = "none";
+
+    // Add print styles
+    const style = document.createElement("style");
+    style.id = "print-styles";
+    style.textContent = `
+      @media print {
+        * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; color-adjust: exact !important; }
+        body { background: #0a1628 !important; }
+        section { padding: 40px 48px 30px !important; min-height: auto !important; break-inside: avoid; }
+        #hero { min-height: auto !important; padding-top: 40px !important; }
+        .reveal { opacity: 1 !important; transform: none !important; }
+        nav, .grain, .ambient-orb, .hero-actions, .contact-form { display: none !important; }
+        footer { break-inside: avoid; }
+      }
+    `;
+    document.head.appendChild(style);
+
+    // Make all reveals visible
+    document.querySelectorAll(".reveal").forEach((el) => el.classList.add("visible"));
+
+    setTimeout(() => {
+      window.print();
+
+      // Restore everything after print
+      setTimeout(() => {
+        if (nav) (nav as HTMLElement).style.display = "";
+        if (grain) (grain as HTMLElement).style.display = "";
+        orbs.forEach((o) => ((o as HTMLElement).style.display = ""));
+        if (heroActions) (heroActions as HTMLElement).style.display = "";
+        if (contactForm) (contactForm as HTMLElement).style.display = "";
+        const ps = document.getElementById("print-styles");
+        if (ps) ps.remove();
+        setDownloading(false);
+      }, 500);
+    }, 300);
   };
 
   return (
@@ -64,9 +112,13 @@ export default function Hero() {
               </a>
               <button
                 onClick={handleDownload}
-                className="inline-flex items-center gap-2.5 px-9 py-4 border border-[rgba(201,168,76,0.12)] text-txt-light font-body text-[12px] font-medium tracking-[2px] uppercase transition-all duration-400 hover:border-gold hover:text-gold bg-transparent cursor-pointer"
+                className={`inline-flex items-center gap-2.5 px-9 py-4 border font-body text-[12px] font-medium tracking-[2px] uppercase transition-all duration-400 bg-transparent cursor-pointer ${
+                  downloading
+                    ? "border-gold text-gold"
+                    : "border-[rgba(201,168,76,0.12)] text-txt-light hover:border-gold hover:text-gold"
+                }`}
               >
-                Download CV ↓
+                {downloading ? "Preparing PDF..." : "Download CV ↓"}
               </button>
             </div>
           </div>
