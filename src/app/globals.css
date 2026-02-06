@@ -43,8 +43,32 @@ body {
 }
 
 @media print {
-  * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+  *, *::before, *::after {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    animation: none !important;
+    transition: none !important;
+  }
   body { background: #0a1628 !important; }
   section { padding: 40px 48px 30px !important; min-height: auto !important; break-inside: avoid; }
-  nav, .grain, .ambient-orb { display: none !important; }
+  #hero { min-height: auto !important; padding-top: 40px !important; }
+  nav, .grain, .ambient-orb, .hero-actions, .contact-form { display: none !important; }
+  footer { break-inside: avoid; }
+}
+
+/* Applied by JS before printing to force all content visible */
+body.printing-cv * {
+  opacity: 1 !important;
+  transform: none !important;
+  animation: none !important;
+  transition: none !important;
+}
+body.printing-cv nav,
+body.printing-cv .grain,
+body.printing-cv .hero-actions,
+body.printing-cv .contact-form {
+  display: none !important;
+}
+body.printing-cv .fixed.rounded-full {
+  display: none !important;
 }

@@ -8,50 +8,15 @@ export default function Hero() {
   const handleDownload = () => {
     setDownloading(true);
 
-    // Hide elements we don't want in PDF
-    const nav = document.querySelector("nav");
-    const grain = document.querySelector(".grain");
-    const orbs = document.querySelectorAll(".ambient-orb");
-    const heroActions = document.querySelector(".hero-actions");
-    const contactForm = document.querySelector(".contact-form");
-
-    if (nav) (nav as HTMLElement).style.display = "none";
-    if (grain) (grain as HTMLElement).style.display = "none";
-    orbs.forEach((o) => ((o as HTMLElement).style.display = "none"));
-    if (heroActions) (heroActions as HTMLElement).style.display = "none";
-    if (contactForm) (contactForm as HTMLElement).style.display = "none";
-
-    // Add print styles
-    const style = document.createElement("style");
-    style.id = "print-styles";
-    style.textContent = `
-      @media print {
-        * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; color-adjust: exact !important; }
-        body { background: #0a1628 !important; }
-        section { padding: 40px 48px 30px !important; min-height: auto !important; break-inside: avoid; }
-        #hero { min-height: auto !important; padding-top: 40px !important; }
-        .reveal { opacity: 1 !important; transform: none !important; }
-        nav, .grain, .ambient-orb, .hero-actions, .contact-form { display: none !important; }
-        footer { break-inside: avoid; }
-      }
-    `;
-    document.head.appendChild(style);
-
-    // Make all reveals visible
-    document.querySelectorAll(".reveal").forEach((el) => el.classList.add("visible"));
+    // Add class that forces all content visible via CSS
+    document.body.classList.add("printing-cv");
 
     setTimeout(() => {
       window.print();
 
-      // Restore everything after print
+      // Restore after print dialog closes
       setTimeout(() => {
-        if (nav) (nav as HTMLElement).style.display = "";
-        if (grain) (grain as HTMLElement).style.display = "";
-        orbs.forEach((o) => ((o as HTMLElement).style.display = ""));
-        if (heroActions) (heroActions as HTMLElement).style.display = "";
-        if (contactForm) (contactForm as HTMLElement).style.display = "";
-        const ps = document.getElementById("print-styles");
-        if (ps) ps.remove();
+        document.body.classList.remove("printing-cv");
         setDownloading(false);
       }, 500);
     }, 300);
