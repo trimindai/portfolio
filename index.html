@@ -448,7 +448,7 @@ footer span{font-family:var(--mono);font-size:11px;color:var(--text-tertiary)}
   #projects .section-title{color:var(--text)!important;margin-bottom:16px!important}
 
   /* Featured card: Enterprise Vulnerability — same page as section header */
-  .case-featured{background:#101830!important;border:1px solid rgba(255,71,87,0.15)!important;box-shadow:none!important;break-inside:avoid!important;padding:16px!important;backdrop-filter:none!important;overflow:hidden!important}
+  .case-featured{background:#101830!important;border:1px solid rgba(255,71,87,0.15)!important;box-shadow:none!important;break-inside:avoid!important;padding:16px!important;backdrop-filter:none!important;overflow:hidden!important;page-break-after:always!important;break-after:page!important}
   .case-featured h3{color:var(--text)!important;font-size:16px!important;margin-bottom:4px!important}
   .case-featured p{color:var(--text-secondary)!important;font-size:11px!important;line-height:1.4!important}
   .case-severity.severity-critical{background:rgba(255,71,87,0.1)!important;color:var(--critical)!important;border:1px solid rgba(255,71,87,0.2)!important;font-size:10px!important;padding:2px 8px!important}
@@ -486,9 +486,11 @@ footer span{font-family:var(--mono);font-size:11px;color:var(--text-tertiary)}
   .case-tech{margin-bottom:4px!important;gap:2px!important}
   .case-impact{display:none!important}
 
-  /* Page breaks: 2 cards per page */
+  /* Page breaks: 2 cards per page — both after+before for mobile compat */
   .case-card:nth-child(2){page-break-after:always!important;break-after:page!important}
+  .case-card:nth-child(3){page-break-before:always!important;break-before:page!important}
   .case-card:nth-child(4){page-break-after:always!important;break-after:page!important}
+  .case-card:nth-child(5){page-break-before:always!important;break-before:page!important}
 
   /* ── Experience ── */
   #experience{page-break-before:always!important;break-before:page!important;background:#0a0e1a!important}
