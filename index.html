@@ -459,36 +459,36 @@ footer span{font-family:var(--mono);font-size:11px;color:var(--text-tertiary)}
   .case-metrics{gap:10px!important;margin-top:20px!important}
   .case-featured-header{margin-bottom:16px!important}
 
-  /* Case cards grid */
-  .cases-grid{grid-template-columns:1fr!important;gap:10px!important}
-  .case-card{background:#101830!important;border:1px solid rgba(74,173,219,0.12)!important;box-shadow:none!important;break-inside:avoid!important;backdrop-filter:none!important}
-  .case-card h3{color:var(--text)!important;font-size:15px!important}
-  .case-card p{color:var(--text-secondary)!important;font-size:11px!important;line-height:1.5!important;margin-bottom:10px!important}
-  .case-body{padding:16px!important}
-  .case-header{border-bottom:1px solid rgba(74,173,219,0.08)!important;padding:10px 16px!important}
+  /* Case cards grid — ultra compact for 2 cards per mobile page */
+  .cases-grid{grid-template-columns:1fr!important;gap:8px!important;padding-top:0!important}
+  .case-card{background:#101830!important;border:1px solid rgba(74,173,219,0.12)!important;box-shadow:none!important;break-inside:avoid!important;backdrop-filter:none!important;border-radius:10px!important}
+  .case-card h3{color:var(--text)!important;font-size:14px!important;margin-bottom:4px!important}
+  .case-card p{color:var(--text-secondary)!important;font-size:10px!important;line-height:1.4!important;margin-bottom:8px!important}
+  .case-body{padding:12px 14px!important}
+  .case-header{border-bottom:1px solid rgba(74,173,219,0.08)!important;padding:8px 14px!important}
+  .case-status{font-size:9px!important}
+  .case-status-dot{width:5px!important;height:5px!important}
   .case-status.status-complete{color:var(--success)!important}
-  .status-complete .case-status-dot{background:var(--success)!important}
+  .status-complete .case-status-dot{background:var(--success)!important;box-shadow:none!important}
   .case-status.status-forensic{color:var(--cyan)!important}
-  .status-forensic .case-status-dot{background:var(--cyan)!important}
+  .status-forensic .case-status-dot{background:var(--cyan)!important;box-shadow:none!important}
   .case-status.status-academic{color:var(--purple)!important}
-  .status-academic .case-status-dot{background:var(--purple)!important}
-  .case-id{color:var(--text-tertiary)!important}
-  .case-icon{width:36px!important;height:36px!important;margin-bottom:10px!important;font-size:16px!important}
+  .status-academic .case-status-dot{background:var(--purple)!important;box-shadow:none!important}
+  .case-id{color:var(--text-tertiary)!important;font-size:9px!important}
+  .case-icon{width:30px!important;height:30px!important;margin-bottom:8px!important;font-size:14px!important;border-radius:8px!important}
   .case-icon.ci-sky{background:rgba(74,173,219,0.1)!important;color:var(--sky)!important}
   .case-icon.ci-cyan{background:rgba(0,212,255,0.08)!important;color:var(--cyan)!important}
   .case-icon.ci-success{background:rgba(46,213,115,0.1)!important;color:var(--success)!important}
   .case-icon.ci-cerulean{background:rgba(30,107,173,0.12)!important;color:var(--sky)!important}
   .case-icon.ci-purple{background:rgba(139,92,246,0.1)!important;color:var(--purple)!important}
   .case-icon.ci-silver{background:rgba(168,184,200,0.1)!important;color:var(--silver)!important}
-  .case-tech span{background:rgba(74,173,219,0.06)!important;color:var(--text-secondary)!important;border:1px solid rgba(74,173,219,0.1)!important;font-size:9px!important;padding:2px 8px!important}
-  .case-tech{margin-bottom:10px!important;gap:4px!important}
-  .case-impact{color:var(--text-tertiary)!important;border-top:1px solid rgba(74,173,219,0.08)!important;padding-top:10px!important;font-size:10px!important}
-  .case-impact i{color:var(--sky)!important}
+  .case-tech span{background:rgba(74,173,219,0.06)!important;color:var(--text-secondary)!important;border:1px solid rgba(74,173,219,0.1)!important;font-size:8px!important;padding:2px 6px!important}
+  .case-tech{margin-bottom:6px!important;gap:3px!important}
+  .case-impact{color:var(--text-tertiary)!important;border-top:1px solid rgba(74,173,219,0.08)!important;padding-top:8px!important;font-size:9px!important}
+  .case-impact i{color:var(--sky)!important;font-size:9px!important}
 
   /* Page breaks: 2 cards per page */
-  /* After Elastic Stack (2nd card) → new page */
   .case-card:nth-child(2){page-break-after:always!important;break-after:page!important}
-  /* After Security Report (4th card) → new page */
   .case-card:nth-child(4){page-break-after:always!important;break-after:page!important}
 
   /* ── Experience ── */
