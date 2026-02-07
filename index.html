@@ -359,6 +359,9 @@ footer span{font-family:var(--mono);font-size:11px;color:var(--text-tertiary)}
   .mesh-bg .orb{animation:none}
 }
 
+/* Page-break markers — hidden on screen */
+.print-page-break{display:none}
+
 /* ═══ PRINT ═══ */
 @media print{
   *{animation:none!important;transition:none!important;-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important;color-adjust:exact!important}
@@ -459,6 +462,9 @@ footer span{font-family:var(--mono);font-size:11px;color:var(--text-tertiary)}
   .case-metrics{gap:8px!important;margin-top:12px!important}
   .case-featured-header{margin-bottom:10px!important;gap:14px!important}
 
+  /* Print page-break markers — physical divs, most reliable on mobile */
+  .print-page-break{display:block!important;height:0!important;overflow:hidden!important;page-break-before:always!important;break-before:page!important}
+
   /* Case cards grid — display:block so page-break works on mobile (grid ignores fragmentation) */
   .cases-grid{display:block!important;padding-top:0!important;margin-top:0!important;page-break-before:always!important;break-before:page!important}
   .case-card{display:block!important;background:#101830!important;border:1px solid rgba(74,173,219,0.12)!important;box-shadow:none!important;break-inside:avoid!important;backdrop-filter:none!important;border-radius:8px!important;margin:0 0 6px 0!important}
@@ -486,11 +492,7 @@ footer span{font-family:var(--mono);font-size:11px;color:var(--text-tertiary)}
   .case-tech{margin-bottom:4px!important;gap:2px!important}
   .case-impact{display:none!important}
 
-  /* Page breaks: 2 cards per page — both after+before for mobile compat */
-  .case-card:nth-child(2){page-break-after:always!important;break-after:page!important}
-  .case-card:nth-child(3){page-break-before:always!important;break-before:page!important}
-  .case-card:nth-child(4){page-break-after:always!important;break-after:page!important}
-  .case-card:nth-child(5){page-break-before:always!important;break-before:page!important}
+  /* Page breaks handled by .print-page-break marker divs in HTML */
 
   /* ── Experience ── */
   #experience{page-break-before:always!important;break-before:page!important;background:#0a0e1a!important}
@@ -763,6 +765,7 @@ footer span{font-family:var(--mono);font-size:11px;color:var(--text-tertiary)}
         </div>
       </div>
 
+      <div class="print-page-break"></div>
       <!-- Case 003: WOL -->
       <div class="case-card gs-reveal">
         <div class="case-header">
@@ -801,6 +804,7 @@ footer span{font-family:var(--mono);font-size:11px;color:var(--text-tertiary)}
         </div>
       </div>
 
+      <div class="print-page-break"></div>
       <!-- Case 005: Chatbot -->
       <div class="case-card gs-reveal">
         <div class="case-header">
