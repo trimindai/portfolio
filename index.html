@@ -445,21 +445,27 @@ footer span{font-family:var(--mono);font-size:11px;color:var(--text-tertiary)}
   /* ── Projects / Cases ── */
   #projects{page-break-before:always!important;break-before:page!important;background:#0a0e1a!important}
   #projects .section-label{color:var(--sky)!important}
-  #projects .section-title{color:var(--text)!important;margin-bottom:32px!important}
-  .case-featured{background:#101830!important;border:1px solid rgba(255,71,87,0.15)!important;box-shadow:none!important;break-inside:avoid!important;padding:28px!important;backdrop-filter:none!important;overflow:hidden!important}
-  .case-featured h3{color:var(--text)!important;font-size:20px!important}
-  .case-featured p{color:var(--text-secondary)!important;font-size:13px!important}
+  #projects .section-title{color:var(--text)!important;margin-bottom:24px!important}
+
+  /* Featured card: Enterprise Vulnerability — same page as section header */
+  .case-featured{background:#101830!important;border:1px solid rgba(255,71,87,0.15)!important;box-shadow:none!important;break-inside:avoid!important;padding:24px!important;backdrop-filter:none!important;overflow:hidden!important;page-break-after:always!important;break-after:page!important}
+  .case-featured h3{color:var(--text)!important;font-size:18px!important}
+  .case-featured p{color:var(--text-secondary)!important;font-size:12px!important;line-height:1.5!important}
   .case-severity.severity-critical{background:rgba(255,71,87,0.1)!important;color:var(--critical)!important;border:1px solid rgba(255,71,87,0.2)!important}
   .case-metric-icon.red{background:rgba(255,71,87,0.1)!important;color:var(--critical)!important}
-  .case-metric span{color:var(--text-secondary)!important}
-  .case-featured-icon{background:rgba(255,71,87,0.1)!important;color:var(--critical)!important}
-  .case-metrics{gap:16px!important}
-  .cases-grid{grid-template-columns:1fr!important;gap:16px!important}
+  .case-metric-icon{width:32px!important;height:32px!important;font-size:14px!important}
+  .case-metric span{color:var(--text-secondary)!important;font-size:12px!important}
+  .case-featured-icon{background:rgba(255,71,87,0.1)!important;color:var(--critical)!important;width:56px!important;height:56px!important;font-size:24px!important}
+  .case-metrics{gap:10px!important;margin-top:20px!important}
+  .case-featured-header{margin-bottom:16px!important}
+
+  /* Case cards grid */
+  .cases-grid{grid-template-columns:1fr!important;gap:10px!important}
   .case-card{background:#101830!important;border:1px solid rgba(74,173,219,0.12)!important;box-shadow:none!important;break-inside:avoid!important;backdrop-filter:none!important}
-  .case-card h3{color:var(--text)!important;font-size:16px!important}
-  .case-card p{color:var(--text-secondary)!important;font-size:12px!important}
-  .case-body{padding:20px!important}
-  .case-header{border-bottom:1px solid rgba(74,173,219,0.08)!important}
+  .case-card h3{color:var(--text)!important;font-size:15px!important}
+  .case-card p{color:var(--text-secondary)!important;font-size:11px!important;line-height:1.5!important;margin-bottom:10px!important}
+  .case-body{padding:16px!important}
+  .case-header{border-bottom:1px solid rgba(74,173,219,0.08)!important;padding:10px 16px!important}
   .case-status.status-complete{color:var(--success)!important}
   .status-complete .case-status-dot{background:var(--success)!important}
   .case-status.status-forensic{color:var(--cyan)!important}
@@ -467,16 +473,23 @@ footer span{font-family:var(--mono);font-size:11px;color:var(--text-tertiary)}
   .case-status.status-academic{color:var(--purple)!important}
   .status-academic .case-status-dot{background:var(--purple)!important}
   .case-id{color:var(--text-tertiary)!important}
-  .case-icon{width:44px!important;height:44px!important;margin-bottom:12px!important}
+  .case-icon{width:36px!important;height:36px!important;margin-bottom:10px!important;font-size:16px!important}
   .case-icon.ci-sky{background:rgba(74,173,219,0.1)!important;color:var(--sky)!important}
   .case-icon.ci-cyan{background:rgba(0,212,255,0.08)!important;color:var(--cyan)!important}
   .case-icon.ci-success{background:rgba(46,213,115,0.1)!important;color:var(--success)!important}
   .case-icon.ci-cerulean{background:rgba(30,107,173,0.12)!important;color:var(--sky)!important}
   .case-icon.ci-purple{background:rgba(139,92,246,0.1)!important;color:var(--purple)!important}
   .case-icon.ci-silver{background:rgba(168,184,200,0.1)!important;color:var(--silver)!important}
-  .case-tech span{background:rgba(74,173,219,0.06)!important;color:var(--text-secondary)!important;border:1px solid rgba(74,173,219,0.1)!important}
-  .case-impact{color:var(--text-tertiary)!important;border-top:1px solid rgba(74,173,219,0.08)!important}
+  .case-tech span{background:rgba(74,173,219,0.06)!important;color:var(--text-secondary)!important;border:1px solid rgba(74,173,219,0.1)!important;font-size:9px!important;padding:2px 8px!important}
+  .case-tech{margin-bottom:10px!important;gap:4px!important}
+  .case-impact{color:var(--text-tertiary)!important;border-top:1px solid rgba(74,173,219,0.08)!important;padding-top:10px!important;font-size:10px!important}
   .case-impact i{color:var(--sky)!important}
+
+  /* Page breaks: 2 cards per page */
+  /* After Elastic Stack (2nd card) → new page */
+  .case-card:nth-child(2){page-break-after:always!important;break-after:page!important}
+  /* After Security Report (4th card) → new page */
+  .case-card:nth-child(4){page-break-after:always!important;break-after:page!important}
 
   /* ── Experience ── */
   #experience{page-break-before:always!important;break-before:page!important;background:#0a0e1a!important}
@@ -501,17 +514,22 @@ footer span{font-family:var(--mono);font-size:11px;color:var(--text-tertiary)}
   .cert-card p{color:var(--text-tertiary)!important}
   .cert-badge{position:relative!important;z-index:1!important}
 
-  /* ── Contact ── */
-  .contact{page-break-before:always!important;break-before:page!important;padding:40px 24px!important;background:#0a0e1a!important}
-  .contact-grid{display:grid!important;grid-template-columns:1fr!important;gap:24px!important;align-items:center!important}
-  .contact-left{text-align:center!important}
-  .contact-left .section-label{color:var(--sky)!important;justify-content:center!important}
-  .contact-title{color:var(--text)!important;font-size:32px!important}
-  .contact-sub{color:var(--text-secondary)!important}
-  .contact-links{flex-direction:column!important;align-items:center!important}
-  .contact-link{background:#101830!important;border:1px solid rgba(74,173,219,0.12)!important;color:var(--text)!important;box-shadow:none!important;backdrop-filter:none!important}
-  .contact-link i{color:var(--sky)!important}
-  .contact-right{display:flex!important}
+  /* ── Contact — everything on ONE page: title + buttons + terminal ── */
+  .contact{page-break-before:always!important;break-before:page!important;break-inside:avoid!important;padding:24px 20px!important;background:#0a0e1a!important}
+  .contact-grid{display:flex!important;flex-direction:column!important;gap:16px!important;align-items:center!important}
+  .contact-left{text-align:center!important;width:100%!important}
+  .contact-left .section-label{color:var(--sky)!important;justify-content:center!important;margin-bottom:8px!important}
+  .contact-title{color:var(--text)!important;font-size:28px!important;margin-bottom:8px!important;letter-spacing:-1px!important}
+  .contact-sub{color:var(--text-secondary)!important;margin-bottom:12px!important;font-size:13px!important}
+  .contact-links{flex-direction:row!important;flex-wrap:wrap!important;justify-content:center!important;gap:8px!important}
+  .contact-link{background:#101830!important;border:1px solid rgba(74,173,219,0.12)!important;color:var(--text)!important;box-shadow:none!important;backdrop-filter:none!important;padding:10px 16px!important;font-size:12px!important}
+  .contact-link i{color:var(--sky)!important;font-size:14px!important}
+  .contact-right{display:flex!important;width:100%!important}
+  .terminal{width:100%!important}
+  .terminal-body{font-size:11px!important;padding:16px 14px!important;line-height:1.8!important}
+  .terminal-bar{padding:8px 12px!important}
+  .terminal-dot{width:8px!important;height:8px!important}
+  .terminal-title{font-size:11px!important}
 
   /* ── Footer ── */
   footer{border-top:1px solid rgba(74,173,219,0.08)!important;padding:20px 24px!important}
