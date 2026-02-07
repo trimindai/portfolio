@@ -1,0 +1,1177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wadhah Almutairi — Cybersecurity Engineer</title>
+<meta name="description" content="Cybersecurity Engineer specializing in Penetration Testing, SIEM, Active Directory Security, and XDR.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+
+/* ═══════════════════════════════════════════════
+   COLOR PALETTE — Inspired by Wadhah's Artwork
+   Diamond shapes, molecular networks, sky blue + silver + cerulean
+   ═══════════════════════════════════════════════ */
+:root{
+  /* Core palette from artwork */
+  --bg:#0a0e1a;
+  --bg-deep:#060a14;
+  --bg-card:rgba(16,24,48,0.5);
+  --bg-card-hover:rgba(22,32,60,0.7);
+
+  /* Primary — Sky Blue (dominant color in artwork) */
+  --sky:#4AADDB;
+  --sky-glow:rgba(74,173,219,0.4);
+  --sky-dim:rgba(74,173,219,0.1);
+  --sky-subtle:rgba(74,173,219,0.05);
+
+  /* Secondary — Cerulean Deep Blue */
+  --cerulean:#1E6BAD;
+  --cerulean-dim:rgba(30,107,173,0.12);
+
+  /* Accent — Bright Cyan (the dot accents in artwork) */
+  --cyan:#00D4FF;
+  --cyan-glow:rgba(0,212,255,0.35);
+  --cyan-dim:rgba(0,212,255,0.08);
+
+  /* Metallic Silver (the connecting nodes in artwork) */
+  --silver:#A8B8C8;
+  --silver-dim:rgba(168,184,200,0.1);
+  --silver-bright:#D0DCE8;
+
+  /* Severity / Status Colors */
+  --critical:#FF4757;
+  --critical-dim:rgba(255,71,87,0.1);
+  --high:#FF8C42;
+  --high-dim:rgba(255,140,66,0.1);
+  --medium:#FFBE0B;
+  --medium-dim:rgba(255,190,11,0.1);
+  --success:#2ED573;
+  --success-dim:rgba(46,213,115,0.1);
+  --purple:#8B5CF6;
+  --purple-dim:rgba(139,92,246,0.1);
+
+  /* Text */
+  --text:#E8EDF5;
+  --text-secondary:#8094B0;
+  --text-tertiary:#506580;
+
+  /* Borders */
+  --border:rgba(74,173,219,0.08);
+  --border-hover:rgba(74,173,219,0.2);
+  --border-glow:rgba(74,173,219,0.35);
+
+  /* Fonts */
+  --font:'Inter',sans-serif;
+  --mono:'JetBrains Mono',monospace;
+}
+
+html{scroll-behavior:smooth;scrollbar-width:thin;scrollbar-color:var(--sky) var(--bg)}
+body{background:var(--bg);color:var(--text);font-family:var(--font);overflow-x:hidden;-webkit-font-smoothing:antialiased;cursor:none}
+
+/* ═══ SCROLL PROGRESS BAR ═══ */
+.scroll-progress{position:fixed;top:0;left:0;height:2px;background:linear-gradient(90deg,var(--cerulean),var(--sky),var(--cyan));z-index:10001;width:0%;box-shadow:0 0 10px var(--sky-glow)}
+
+/* ═══ CUSTOM CURSOR ═══ */
+.cursor{position:fixed;border-radius:50%;pointer-events:none;z-index:10000;transform:translate(-50%,-50%)}
+.cursor-outer{width:36px;height:36px;border:1.5px solid rgba(74,173,219,0.35);transition:width .3s,height .3s,border-color .3s,background .3s}
+.cursor-inner{width:5px;height:5px;background:var(--sky)}
+.cursor-glow{width:300px;height:300px;background:radial-gradient(circle,rgba(74,173,219,0.05) 0%,transparent 70%);transition:opacity .3s}
+.cursor-outer.hover{width:56px;height:56px;border-color:rgba(0,212,255,0.5);background:rgba(74,173,219,0.06)}
+
+/* ═══ NOISE OVERLAY ═══ */
+body::after{content:'';position:fixed;inset:0;opacity:.02;pointer-events:none;z-index:9999;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-repeat:repeat;background-size:256px 256px}
+
+/* ═══ DIAMOND MESH BACKGROUND (inspired by artwork's diamond shape) ═══ */
+.mesh-bg{position:fixed;inset:0;z-index:0;overflow:hidden;pointer-events:none}
+.mesh-bg .orb{position:absolute;border-radius:50%;filter:blur(140px);will-change:transform}
+.mesh-bg .orb-1{width:700px;height:700px;background:var(--cerulean);top:-15%;left:-10%;opacity:.08;animation:orbFloat 30s ease-in-out infinite}
+.mesh-bg .orb-2{width:500px;height:500px;background:var(--sky);bottom:-10%;right:-5%;opacity:.06;animation:orbFloat 30s ease-in-out infinite -10s}
+.mesh-bg .orb-3{width:400px;height:400px;background:var(--cyan);top:50%;left:40%;opacity:.04;animation:orbFloat 30s ease-in-out infinite -20s}
+@keyframes orbFloat{0%,100%{transform:translate(0,0) scale(1)}25%{transform:translate(80px,-50px) scale(1.15)}50%{transform:translate(-40px,70px) scale(.92)}75%{transform:translate(50px,30px) scale(1.08)}}
+
+/* Grid pattern with diamond feel */
+.grid-pattern{position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:linear-gradient(rgba(74,173,219,.02) 1px,transparent 1px),linear-gradient(90deg,rgba(74,173,219,.02) 1px,transparent 1px);
+  background-size:80px 80px;mask-image:radial-gradient(ellipse 60% 50% at 50% 50%,black 40%,transparent 100%)}
+
+/* ═══ HERO CANVAS ═══ */
+#heroCanvas{position:absolute;inset:0;z-index:1;pointer-events:none}
+
+/* ═══ NAV ═══ */
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:0 clamp(24px,4vw,64px);height:72px;display:flex;justify-content:space-between;align-items:center;backdrop-filter:blur(20px) saturate(1.4);background:rgba(10,14,26,0.6);border-bottom:1px solid var(--border);transition:background .3s}
+.nav-logo{font-family:var(--mono);font-size:18px;font-weight:700;color:var(--sky)}
+.nav-logo span{color:var(--silver)}
+.nav-links{display:flex;gap:32px;list-style:none}
+.nav-links a{color:var(--text-tertiary);text-decoration:none;font-size:13px;font-weight:500;letter-spacing:.5px;transition:color .3s;cursor:none;position:relative}
+.nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:1px;background:var(--sky);transition:width .3s}
+.nav-links a:hover{color:var(--text)}
+.nav-links a:hover::after{width:100%}
+.nav-links a.active{color:var(--sky)}
+.nav-links a.active::after{width:100%}
+.nav-cta{display:flex;align-items:center;gap:8px;padding:8px 20px;border-radius:100px;border:1px solid var(--border);background:transparent;color:var(--text-secondary);font-size:12px;font-family:var(--mono);cursor:none;transition:all .3s}
+.nav-cta .dot{width:6px;height:6px;border-radius:50%;background:var(--success);box-shadow:0 0 8px var(--success);animation:pulse 2s infinite}
+.nav-cta:hover{border-color:var(--sky);color:var(--text)}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+
+/* ═══ HERO ═══ */
+.hero{min-height:100vh;display:flex;align-items:center;justify-content:center;position:relative;text-align:center;padding:0 24px;overflow:hidden}
+.hero-content{position:relative;z-index:2;max-width:900px}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;padding:8px 20px;border-radius:100px;border:1px solid var(--border);background:rgba(16,24,48,0.6);font-family:var(--mono);font-size:12px;color:var(--sky);margin-bottom:32px;backdrop-filter:blur(10px)}
+.hero-badge i{color:var(--cyan);font-size:14px}
+.hero-name{font-size:clamp(48px,10vw,110px);font-weight:900;line-height:.95;letter-spacing:-3px;margin-bottom:16px}
+.hero-name .gradient{background:linear-gradient(135deg,var(--sky) 0%,var(--cyan) 50%,var(--silver-bright) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-size:200% auto;animation:gradientShift 6s ease infinite}
+@keyframes gradientShift{0%,100%{background-position:0% center}50%{background-position:100% center}}
+.hero-subtitle{font-size:clamp(16px,2.5vw,22px);color:var(--text-secondary);font-weight:300;margin-bottom:40px;letter-spacing:.5px;min-height:32px}
+.hero-subtitle .typewriter{display:inline;border-right:2px solid var(--sky);padding-right:4px;animation:blink .6s step-end infinite}
+@keyframes blink{50%{border-color:transparent}}
+.hero-pills{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-bottom:48px}
+.hero-pill{display:flex;align-items:center;gap:6px;padding:8px 16px;border-radius:100px;border:1px solid var(--border);background:rgba(16,24,48,0.5);font-size:13px;color:var(--text-secondary);backdrop-filter:blur(10px);transition:all .3s;cursor:none}
+.hero-pill i{font-size:14px}
+.hero-pill:hover{border-color:var(--sky);color:var(--text);transform:translateY(-2px);box-shadow:0 4px 20px var(--sky-subtle)}
+.hero-cta{display:flex;justify-content:center;gap:16px}
+.btn-primary{padding:14px 36px;border-radius:12px;background:linear-gradient(135deg,var(--cerulean),var(--sky));color:#fff;font-weight:600;font-size:14px;border:none;cursor:none;text-decoration:none;display:inline-flex;align-items:center;gap:8px;transition:all .3s;position:relative;overflow:hidden}
+.btn-primary::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,transparent,rgba(255,255,255,0.15),transparent);transform:translateX(-100%);transition:transform .5s}
+.btn-primary:hover::after{transform:translateX(100%)}
+.btn-primary:hover{box-shadow:0 0 40px var(--sky-glow);transform:translateY(-2px)}
+.btn-secondary{padding:14px 36px;border-radius:12px;background:transparent;border:1px solid var(--border);color:var(--text-secondary);font-weight:500;font-size:14px;cursor:none;text-decoration:none;display:inline-flex;align-items:center;gap:8px;transition:all .3s}
+.btn-secondary:hover{border-color:var(--sky);color:var(--text);transform:translateY(-2px)}
+.hero-scroll{position:absolute;bottom:32px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px}
+.hero-scroll-line{width:1px;height:40px;background:linear-gradient(to bottom,var(--sky),transparent);animation:scrollDown 2s infinite}
+@keyframes scrollDown{0%{opacity:.2;transform:scaleY(.5)}50%{opacity:1;transform:scaleY(1)}100%{opacity:.2;transform:scaleY(.5)}}
+.hero-scroll span{font-family:var(--mono);font-size:10px;color:var(--text-tertiary);letter-spacing:3px;text-transform:uppercase}
+
+/* ═══ HERO STATS BAR ═══ */
+.hero-stats{display:grid;grid-template-columns:repeat(4,1fr);max-width:800px;margin:48px auto 0;border-radius:16px;border:1px solid var(--border);background:var(--bg-card);backdrop-filter:blur(10px);overflow:hidden;position:relative}
+.hero-stats::before{content:'';position:absolute;inset:0;border-radius:16px;background:radial-gradient(ellipse at 50% 0%,rgba(46,213,115,0.04),transparent 70%);pointer-events:none}
+.hero-stat{padding:32px 24px;text-align:center;position:relative;transition:background .3s;cursor:none}
+.hero-stat:not(:last-child)::after{content:'';position:absolute;right:0;top:20%;height:60%;width:1px;background:var(--border)}
+.hero-stat:hover{background:rgba(46,213,115,0.03)}
+.hero-stat-icon{font-size:22px;color:var(--success);margin-bottom:12px;display:block}
+.hero-stat-value{font-size:clamp(28px,3vw,36px);font-weight:800;color:var(--text);letter-spacing:-1px;margin-bottom:4px}
+.hero-stat-label{font-size:12px;color:var(--text-tertiary);font-weight:400;letter-spacing:.5px}
+
+/* ═══ TERMINAL BLOCK ═══ */
+.terminal{border-radius:16px;border:1px solid var(--border);background:rgba(12,16,28,0.9);backdrop-filter:blur(10px);overflow:hidden;box-shadow:0 24px 80px rgba(0,0,0,0.4);transition:all .4s;cursor:none;width:100%}
+.terminal:hover{border-color:var(--border-hover);box-shadow:0 24px 80px rgba(0,0,0,0.5),0 0 60px rgba(74,173,219,0.05)}
+.terminal-bar{padding:12px 16px;display:flex;align-items:center;gap:8px;border-bottom:1px solid var(--border);background:rgba(16,20,32,0.8)}
+.terminal-dot{width:10px;height:10px;border-radius:50%}
+.terminal-dot.red{background:#FF5F56}
+.terminal-dot.yellow{background:#FFBD2E}
+.terminal-dot.green{background:#27C93F}
+.terminal-title{font-family:var(--mono);font-size:12px;color:var(--text-tertiary);margin-left:8px}
+.terminal-body{padding:28px 24px;font-family:var(--mono);font-size:14px;line-height:2}
+.terminal-line{display:block}
+.terminal-prompt{color:var(--success)}
+.terminal-cmd{color:var(--text);font-weight:700}
+.terminal-output{color:var(--text-secondary)}
+.terminal-key{color:var(--cyan);font-weight:600}
+.terminal-val{color:var(--text-secondary)}
+.terminal-header{color:var(--medium);font-weight:600}
+.terminal-port{color:var(--medium);font-weight:700}
+.terminal-blink{animation:blink .6s step-end infinite}
+
+/* ═══ SECTIONS ═══ */
+.section{padding:clamp(80px,10vw,140px) clamp(24px,5vw,80px);max-width:1200px;margin:0 auto;position:relative;z-index:1}
+.section-label{display:inline-flex;align-items:center;gap:10px;font-family:var(--mono);font-size:12px;color:var(--sky);letter-spacing:2px;text-transform:uppercase;margin-bottom:16px}
+.section-label::before{content:'';width:24px;height:1px;background:var(--sky)}
+.section-title{font-size:clamp(32px,5vw,48px);font-weight:800;letter-spacing:-1.5px;margin-bottom:64px;line-height:1.1}
+.glow-divider{height:1px;background:linear-gradient(90deg,transparent,var(--sky),var(--cyan),var(--sky),transparent);opacity:.2}
+
+/* ═══ SKILLS GRID ═══ */
+.skills-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.skill-card{padding:32px;border-radius:16px;border:1px solid var(--border);background:var(--bg-card);backdrop-filter:blur(10px);transition:all .4s cubic-bezier(.25,.8,.25,1);cursor:none;position:relative;overflow:hidden}
+.skill-card::before{content:'';position:absolute;inset:0;border-radius:16px;background:radial-gradient(circle at var(--mx,50%) var(--my,50%),rgba(74,173,219,0.08) 0%,transparent 50%);opacity:0;transition:opacity .4s}
+.skill-card:hover::before{opacity:1}
+.skill-card:hover{border-color:var(--border-hover);transform:translateY(-4px) scale(1.01);box-shadow:0 20px 60px rgba(0,0,0,0.3)}
+.skill-icon{width:56px;height:56px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:24px;margin-bottom:20px;transition:transform .3s}
+.skill-card:hover .skill-icon{transform:scale(1.1) rotate(-3deg)}
+.skill-icon.sky{background:var(--sky-dim);color:var(--sky)}
+.skill-icon.cyan{background:var(--cyan-dim);color:var(--cyan)}
+.skill-icon.silver{background:var(--silver-dim);color:var(--silver)}
+.skill-icon.cerulean{background:var(--cerulean-dim);color:var(--sky)}
+.skill-icon.purple{background:var(--purple-dim);color:var(--purple)}
+.skill-icon.success{background:var(--success-dim);color:var(--success)}
+.skill-card h3{font-size:16px;font-weight:700;margin-bottom:14px;letter-spacing:-.3px}
+.skill-tags{display:flex;flex-wrap:wrap;gap:6px}
+.skill-tag{font-family:var(--mono);font-size:11px;padding:4px 10px;border-radius:6px;background:rgba(74,173,219,0.04);color:var(--text-secondary);border:1px solid var(--border);transition:all .2s}
+.skill-card:hover .skill-tag{border-color:var(--border-hover);background:rgba(74,173,219,0.06)}
+
+/* ═══ PROJECTS — PRO CYBERSECURITY CASE STUDY DISPLAY ═══ */
+.projects-showcase{display:flex;flex-direction:column;gap:24px}
+
+/* Featured Critical Finding */
+.case-featured{border-radius:20px;border:1px solid rgba(255,71,87,0.15);background:linear-gradient(135deg,rgba(16,24,48,0.8),rgba(255,71,87,0.03));backdrop-filter:blur(10px);padding:48px;position:relative;overflow:hidden;transition:all .4s;cursor:none}
+.case-featured::before{content:'';position:absolute;top:-100px;right:-100px;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(255,71,87,0.06),transparent 70%);pointer-events:none}
+.case-featured::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--critical),transparent);opacity:.3}
+.case-featured:hover{border-color:rgba(255,71,87,0.3);box-shadow:0 0 60px rgba(255,71,87,0.06)}
+.case-featured-header{display:flex;align-items:flex-start;gap:24px;margin-bottom:24px}
+.case-featured-icon{width:72px;height:72px;border-radius:18px;background:var(--critical-dim);color:var(--critical);display:flex;align-items:center;justify-content:center;font-size:32px;flex-shrink:0;position:relative}
+.case-featured-icon::after{content:'';position:absolute;inset:-3px;border-radius:20px;border:1px solid rgba(255,71,87,0.2);animation:pulseRing 3s infinite}
+@keyframes pulseRing{0%,100%{opacity:.3;transform:scale(1)}50%{opacity:.6;transform:scale(1.05)}}
+.case-severity{display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:11px;letter-spacing:2px;text-transform:uppercase;padding:5px 14px;border-radius:100px;margin-bottom:12px}
+.severity-critical{background:var(--critical-dim);color:var(--critical);border:1px solid rgba(255,71,87,0.2)}
+.case-featured h3{font-size:28px;font-weight:800;letter-spacing:-1px;margin-bottom:8px}
+.case-featured p{font-size:15px;color:var(--text-secondary);line-height:1.7;max-width:680px}
+.case-metrics{display:flex;gap:32px;margin-top:28px;flex-wrap:wrap}
+.case-metric{display:flex;align-items:center;gap:10px}
+.case-metric-icon{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
+.case-metric-icon.red{background:var(--critical-dim);color:var(--critical)}
+.case-metric span{font-size:13px;color:var(--text-secondary);font-weight:500}
+
+/* Project Cards Grid — Case File Style */
+.cases-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.case-card{border-radius:16px;border:1px solid var(--border);background:var(--bg-card);backdrop-filter:blur(10px);overflow:hidden;transition:all .4s cubic-bezier(.25,.8,.25,1);cursor:none;position:relative}
+.case-card::before{content:'';position:absolute;inset:0;border-radius:16px;background:radial-gradient(circle at var(--mx,50%) var(--my,50%),rgba(74,173,219,0.08) 0%,transparent 50%);opacity:0;transition:opacity .4s}
+.case-card:hover::before{opacity:1}
+.case-card:hover{border-color:var(--border-hover);transform:translateY(-4px);box-shadow:0 20px 60px rgba(0,0,0,0.3)}
+
+/* Case Card Header — Terminal-style status bar */
+.case-header{padding:16px 24px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
+.case-status{display:flex;align-items:center;gap:6px;font-family:var(--mono);font-size:10px;letter-spacing:1.5px;text-transform:uppercase}
+.case-status-dot{width:6px;height:6px;border-radius:50%}
+.status-complete .case-status-dot{background:var(--success);box-shadow:0 0 6px var(--success)}
+.status-complete{color:var(--success)}
+.status-forensic .case-status-dot{background:var(--cyan);box-shadow:0 0 6px var(--cyan)}
+.status-forensic{color:var(--cyan)}
+.status-academic .case-status-dot{background:var(--purple);box-shadow:0 0 6px var(--purple)}
+.status-academic{color:var(--purple)}
+.case-id{font-family:var(--mono);font-size:10px;color:var(--text-tertiary);letter-spacing:1px}
+
+/* Case Card Body */
+.case-body{padding:24px}
+.case-icon{width:52px;height:52px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:16px;transition:transform .3s}
+.case-card:hover .case-icon{transform:scale(1.1) rotate(-2deg)}
+.ci-sky{background:var(--sky-dim);color:var(--sky)}
+.ci-cyan{background:var(--cyan-dim);color:var(--cyan)}
+.ci-cerulean{background:var(--cerulean-dim);color:var(--sky)}
+.ci-silver{background:var(--silver-dim);color:var(--silver)}
+.ci-purple{background:var(--purple-dim);color:var(--purple)}
+.ci-success{background:var(--success-dim);color:var(--success)}
+.case-card h3{font-size:18px;font-weight:700;margin-bottom:8px;letter-spacing:-.3px;transition:color .3s}
+.case-card:hover h3{color:var(--sky)}
+.case-card p{font-size:13px;color:var(--text-secondary);line-height:1.6;margin-bottom:16px}
+
+/* Tech Stack Bar in case cards */
+.case-tech{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:16px}
+.case-tech span{font-family:var(--mono);font-size:10px;padding:3px 10px;border-radius:6px;background:rgba(74,173,219,0.06);color:var(--text-secondary);border:1px solid var(--border);transition:all .2s}
+.case-card:hover .case-tech span{border-color:var(--border-hover)}
+
+/* Impact indicator */
+.case-impact{display:flex;align-items:center;gap:8px;padding-top:16px;border-top:1px solid var(--border);font-family:var(--mono);font-size:11px;color:var(--text-tertiary)}
+.case-impact i{color:var(--sky);font-size:12px}
+
+/* ═══ EXPERIENCE ═══ */
+.exp-list{display:flex;flex-direction:column;gap:16px}
+.exp-card{padding:36px;border-radius:16px;border:1px solid var(--border);background:var(--bg-card);backdrop-filter:blur(10px);position:relative;transition:all .4s;cursor:none;overflow:hidden}
+.exp-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:linear-gradient(to bottom,var(--sky),var(--cyan));opacity:0;transition:opacity .3s}
+.exp-card:hover{border-color:var(--border-hover)}
+.exp-card:hover::before{opacity:1}
+.exp-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:20px;flex-wrap:wrap;gap:12px}
+.exp-info h3{font-size:22px;font-weight:700;letter-spacing:-.5px;margin-bottom:4px}
+.exp-info .company{display:flex;align-items:center;gap:8px;font-size:14px;color:var(--text-secondary)}
+.exp-info .company i{color:var(--sky);font-size:14px}
+.exp-date{font-family:var(--mono);font-size:12px;color:var(--sky);padding:6px 14px;border-radius:100px;border:1px solid var(--sky-dim);background:var(--sky-dim);white-space:nowrap}
+.exp-highlights{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.exp-highlight{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--text-secondary)}
+.exp-highlight i{color:var(--sky);font-size:10px;flex-shrink:0}
+
+/* ═══ CERTS ═══ */
+.certs-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.cert-card{padding:40px 32px;border-radius:16px;border:1px solid var(--border);background:var(--bg-card);backdrop-filter:blur(10px);text-align:center;transition:all .4s;cursor:none;position:relative;overflow:hidden}
+.cert-card::before{content:'';position:absolute;inset:0;border-radius:16px;padding:1px;background:linear-gradient(135deg,transparent,transparent);-webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);-webkit-mask-composite:xor;mask-composite:exclude;transition:background .4s}
+.cert-card:hover::before{background:linear-gradient(135deg,var(--sky),var(--cyan))}
+.cert-card:hover{transform:translateY(-4px)}
+.cert-badge{width:64px;height:64px;border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:28px;margin:0 auto 20px;transition:transform .3s}
+.cert-card:hover .cert-badge{transform:scale(1.15) rotate(-5deg)}
+.cert-card h3{font-size:16px;font-weight:700;margin-bottom:6px;letter-spacing:-.3px}
+.cert-card p{font-family:var(--mono);font-size:11px;color:var(--text-tertiary);letter-spacing:1px;text-transform:uppercase}
+
+/* ═══ CONTACT ═══ */
+.contact{padding:clamp(80px,10vw,160px) clamp(24px,5vw,80px);position:relative;z-index:1;max-width:1200px;margin:0 auto}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
+.contact-left{text-align:left}
+.contact-left .section-label{justify-content:flex-start}
+.contact-title{font-size:clamp(36px,5vw,52px);font-weight:800;letter-spacing:-2px;margin-bottom:16px}
+.contact-sub{font-size:16px;color:var(--text-secondary);font-weight:300;margin-bottom:36px}
+.contact-links{display:flex;flex-direction:row;flex-wrap:wrap;gap:12px}
+.contact-link{display:flex;align-items:center;gap:10px;padding:16px 24px;border-radius:12px;border:1px solid var(--border);background:var(--bg-card);backdrop-filter:blur(10px);color:var(--text);text-decoration:none;font-size:14px;font-weight:500;transition:all .3s;cursor:none;width:fit-content}
+.contact-link i{font-size:18px;color:var(--sky)}
+.contact-link:hover{border-color:var(--sky);transform:translateX(6px);box-shadow:0 8px 32px var(--sky-subtle)}
+.contact-right{display:flex;justify-content:center}
+
+/* ═══ FOOTER ═══ */
+footer{border-top:1px solid var(--border);padding:24px clamp(24px,5vw,80px);display:flex;justify-content:space-between;align-items:center;max-width:1200px;margin:0 auto;position:relative;z-index:1}
+footer span{font-family:var(--mono);font-size:11px;color:var(--text-tertiary)}
+
+/* ═══ GSAP INITIAL STATE ═══ */
+.gs-reveal{opacity:0;transform:translateY(40px)}
+
+/* ═══ RESPONSIVE ═══ */
+@media(max-width:1024px){
+  .hero-stats{grid-template-columns:repeat(2,1fr)}
+  .hero-stat:nth-child(2)::after{display:none}
+  .hero-stat:nth-child(1),.hero-stat:nth-child(2){border-bottom:1px solid var(--border)}
+  .skills-grid{grid-template-columns:repeat(2,1fr)}
+  .cases-grid{grid-template-columns:1fr}
+  .case-featured{padding:32px}
+  .case-featured h3{font-size:22px}
+  .case-metrics{gap:20px}
+  .exp-highlights{grid-template-columns:1fr}
+  .certs-grid{grid-template-columns:1fr}
+  .contact-grid{gap:32px}
+}
+@media(max-width:768px){
+  body{cursor:auto}
+  .nav-links{display:none}
+  .nav-cta{display:none}
+  .hero-name{letter-spacing:-1.5px}
+  .hero-cta{flex-direction:column;align-items:center}
+  .skills-grid{grid-template-columns:1fr}
+  .case-featured-header{flex-direction:column}
+  .case-featured-icon{width:56px;height:56px;font-size:24px}
+  .case-metrics{flex-direction:column;gap:12px}
+  .exp-header{flex-direction:column}
+  .hero-stats{grid-template-columns:repeat(2,1fr)}
+  .hero-stat:nth-child(2)::after{display:none}
+  .hero-stat:nth-child(1),.hero-stat:nth-child(2){border-bottom:1px solid var(--border)}
+  .hero-stat{padding:24px 16px}
+  .contact-grid{grid-template-columns:1fr!important;gap:32px}
+  .contact-left{text-align:center}
+  .contact-left .section-label{justify-content:center}
+  .contact-links{align-items:center}
+  .contact-link{width:auto}
+  .terminal-body{font-size:12px;padding:20px 16px}
+  footer{flex-direction:column;gap:8px;text-align:center}
+  .cursor,.cursor-glow{display:none!important}
+  a,button,.skill-card,.case-card,.case-featured,.cert-card,.hero-pill,.contact-link,.btn-primary,.btn-secondary,.nav-links a,.nav-cta,.exp-card,.hero-stat,.terminal{cursor:auto!important}
+}
+
+/* ═══ REDUCED MOTION ═══ */
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
+  .gs-reveal{opacity:1!important;transform:none!important}
+  .mesh-bg .orb{animation:none}
+}
+
+/* ═══ PRINT ═══ */
+@media print{
+  *{animation:none!important;transition:none!important;-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important;color-adjust:exact!important}
+  body{background:var(--bg)!important;color:var(--text)!important;cursor:auto!important;-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}
+  body::after,.mesh-bg,.grid-pattern,.cursor,.cursor-glow,.hero-scroll,.scroll-progress,#heroCanvas{display:none!important}
+
+  /* ── Nav — hidden in PDF ── */
+  nav{display:none!important}
+
+  /* ── Hero — full first page ── */
+  .hero{min-height:auto!important;padding:40px 24px!important;background:var(--bg)!important}
+  .hero-badge{background:rgba(16,24,48,0.6)!important;border:1px solid var(--border)!important;color:var(--sky)!important}
+  .hero-name{color:var(--text)!important;font-size:72px!important}
+  .hero-name .gradient{-webkit-text-fill-color:var(--sky)!important;color:var(--sky)!important}
+  .hero-subtitle{color:var(--text-secondary)!important;min-height:0!important}
+  .hero-subtitle .typewriter{border-right:none!important}
+  .hero-pill{background:rgba(16,24,48,0.5)!important;border:1px solid var(--border)!important;color:var(--text-secondary)!important}
+  .btn-primary{background:linear-gradient(135deg,var(--cerulean),var(--sky))!important;color:#fff!important}
+  .btn-secondary{border:1px solid var(--border)!important;color:var(--text-secondary)!important}
+
+  /* ── Hero Stats ── */
+  .hero-stats{background:var(--bg-card)!important;border:1px solid var(--border)!important;margin-top:32px!important}
+  .hero-stat{padding:24px 16px!important}
+  .hero-stat-icon{color:var(--success)!important}
+  .hero-stat-value{color:var(--text)!important}
+  .hero-stat-label{color:var(--text-tertiary)!important}
+  .hero-stat:not(:last-child)::after{background:var(--border)!important}
+
+  /* ── Terminal (inside contact) ── */
+  .terminal{background:rgba(12,16,28,0.9)!important;border:1px solid var(--border)!important;box-shadow:none!important}
+  .terminal-bar{background:rgba(16,20,32,0.8)!important;border-bottom:1px solid var(--border)!important}
+  .terminal-dot.red{background:#FF5F56!important}
+  .terminal-dot.yellow{background:#FFBD2E!important}
+  .terminal-dot.green{background:#27C93F!important}
+  .terminal-title{color:var(--text-tertiary)!important}
+  .terminal-prompt{color:var(--success)!important}
+  .terminal-cmd{color:var(--text)!important}
+  .terminal-output{color:var(--text-secondary)!important}
+  .terminal-key{color:var(--cyan)!important}
+  .terminal-val{color:var(--text-secondary)!important}
+  .terminal-header{color:var(--medium)!important}
+  .terminal-port{color:var(--medium)!important}
+
+  /* ── Glow dividers — hide in print to avoid spacing issues ── */
+  .glow-divider{display:none!important}
+
+  /* ── Section defaults ── */
+  .gs-reveal{opacity:1!important;transform:none!important}
+
+  /* ── Skills — starts on new page ── */
+  #skills{padding:60px 24px 40px!important;background:var(--bg)!important;page-break-before:always!important;break-before:page!important;page-break-after:always!important;break-after:page!important;max-width:1200px!important;margin:0 auto!important}
+  #skills .section-label{color:var(--sky)!important}
+  #skills .section-title{color:var(--text)!important;margin-bottom:40px!important}
+  .skills-grid{grid-template-columns:repeat(2,1fr)!important;gap:16px!important}
+  .skill-card{background:var(--bg-card)!important;border:1px solid var(--border)!important;box-shadow:none!important;break-inside:avoid!important;padding:24px!important}
+  .skill-card h3{color:var(--text)!important}
+  .skill-tag{background:rgba(74,173,219,0.04)!important;color:var(--text-secondary)!important;border:1px solid var(--border)!important}
+  .skill-icon.sky{background:var(--sky-dim)!important;color:var(--sky)!important}
+  .skill-icon.cyan{background:var(--cyan-dim)!important;color:var(--cyan)!important}
+  .skill-icon.silver{background:var(--silver-dim)!important;color:var(--silver)!important}
+  .skill-icon.cerulean{background:var(--cerulean-dim)!important;color:var(--sky)!important}
+  .skill-icon.purple{background:var(--purple-dim)!important;color:var(--purple)!important}
+  .skill-icon.success{background:var(--success-dim)!important;color:var(--success)!important}
+
+  /* ── Projects / Cases — starts on new page ── */
+  #projects{padding:60px 24px 40px!important;background:var(--bg)!important;page-break-before:always!important;break-before:page!important;max-width:1200px!important;margin:0 auto!important}
+  #projects .section-label{color:var(--sky)!important}
+  #projects .section-title{color:var(--text)!important;margin-bottom:40px!important}
+  .case-featured{background:linear-gradient(135deg,rgba(16,24,48,0.8),rgba(255,71,87,0.03))!important;border:1px solid rgba(255,71,87,0.15)!important;box-shadow:none!important;break-inside:avoid!important;page-break-after:always!important;break-after:page!important;padding:36px!important}
+  .case-featured h3{color:var(--text)!important}
+  .case-featured p{color:var(--text-secondary)!important}
+  .case-severity.severity-critical{background:var(--critical-dim)!important;color:var(--critical)!important;border:1px solid rgba(255,71,87,0.2)!important}
+  .case-metric-icon.red{background:var(--critical-dim)!important;color:var(--critical)!important}
+  .case-metric span{color:var(--text-secondary)!important}
+  .case-featured-icon{background:var(--critical-dim)!important;color:var(--critical)!important}
+  .cases-grid{grid-template-columns:1fr!important;gap:20px!important}
+  .case-card{background:var(--bg-card)!important;border:1px solid var(--border)!important;box-shadow:none!important;break-inside:avoid!important}
+  .case-card h3{color:var(--text)!important}
+  .case-card p{color:var(--text-secondary)!important}
+  .case-header{border-bottom:1px solid var(--border)!important}
+  .case-status.status-complete{color:var(--success)!important}
+  .status-complete .case-status-dot{background:var(--success)!important}
+  .case-status.status-forensic{color:var(--cyan)!important}
+  .status-forensic .case-status-dot{background:var(--cyan)!important}
+  .case-status.status-academic{color:var(--purple)!important}
+  .status-academic .case-status-dot{background:var(--purple)!important}
+  .case-id{color:var(--text-tertiary)!important}
+  .case-icon.ci-sky{background:var(--sky-dim)!important;color:var(--sky)!important}
+  .case-icon.ci-cyan{background:var(--cyan-dim)!important;color:var(--cyan)!important}
+  .case-icon.ci-success{background:var(--success-dim)!important;color:var(--success)!important}
+  .case-icon.ci-cerulean{background:var(--cerulean-dim)!important;color:var(--sky)!important}
+  .case-icon.ci-purple{background:var(--purple-dim)!important;color:var(--purple)!important}
+  .case-icon.ci-silver{background:var(--silver-dim)!important;color:var(--silver)!important}
+  .case-tech span{background:rgba(74,173,219,0.06)!important;color:var(--text-secondary)!important;border:1px solid var(--border)!important}
+  .case-impact{color:var(--text-tertiary)!important;border-top:1px solid var(--border)!important}
+  .case-impact i{color:var(--sky)!important}
+
+  /* ── Experience — starts on new page ── */
+  #experience{padding:60px 24px 40px!important;background:var(--bg)!important;page-break-before:always!important;break-before:page!important;page-break-after:always!important;break-after:page!important;max-width:1200px!important;margin:0 auto!important}
+  #experience .section-label{color:var(--sky)!important}
+  #experience .section-title{color:var(--text)!important;margin-bottom:40px!important}
+  .exp-card{background:var(--bg-card)!important;border:1px solid var(--border)!important;box-shadow:none!important;break-inside:avoid!important;margin-bottom:20px!important}
+  .exp-info h3{color:var(--text)!important}
+  .exp-info .company{color:var(--text-secondary)!important}
+  .exp-info .company i{color:var(--sky)!important}
+  .exp-date{color:var(--sky)!important;background:var(--sky-dim)!important;border:1px solid var(--sky-dim)!important}
+  .exp-highlight{color:var(--text-secondary)!important}
+  .exp-highlight i{color:var(--sky)!important}
+
+  /* ── Certifications — starts on new page ── */
+  #certs{padding:60px 24px 40px!important;background:var(--bg)!important;page-break-before:always!important;break-before:page!important;page-break-after:always!important;break-after:page!important;max-width:1200px!important;margin:0 auto!important}
+  #certs .section-label{color:var(--sky)!important}
+  #certs .section-title{color:var(--text)!important;margin-bottom:40px!important}
+  .certs-grid{grid-template-columns:repeat(3,1fr)!important;gap:16px!important}
+  .cert-card{background:var(--bg-card)!important;border:1px solid var(--border)!important;box-shadow:none!important;break-inside:avoid!important}
+  .cert-card h3{color:var(--text)!important}
+  .cert-card p{color:var(--text-tertiary)!important}
+
+  /* ── Contact — starts on new page ── */
+  .contact{background:var(--bg)!important;page-break-before:always!important;break-before:page!important;padding:60px 24px!important}
+  .contact-grid{display:grid!important;grid-template-columns:1fr 1fr!important;gap:32px!important;align-items:center!important}
+  .contact-left .section-label{color:var(--sky)!important}
+  .contact-title{color:var(--text)!important}
+  .contact-sub{color:var(--text-secondary)!important}
+  .contact-links{flex-direction:row!important;flex-wrap:wrap!important}
+  .contact-link{background:var(--bg-card)!important;border:1px solid var(--border)!important;color:var(--text)!important;box-shadow:none!important}
+  .contact-link i{color:var(--sky)!important}
+  .contact-right{display:flex!important}
+
+  /* ── Footer ── */
+  footer{border-top:1px solid var(--border)!important;padding:20px 24px!important}
+  footer span{color:var(--text-tertiary)!important}
+
+  @page{size:A4;margin:12mm 10mm}
+}
+</style>
+</head>
+<body>
+
+<!-- SCROLL PROGRESS BAR -->
+<div class="scroll-progress" id="scrollProgress"></div>
+
+<!-- BG EFFECTS -->
+<div class="mesh-bg">
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="orb orb-3"></div>
+</div>
+<div class="grid-pattern"></div>
+
+<!-- CURSOR -->
+<div class="cursor cursor-outer" id="cursorOuter"></div>
+<div class="cursor cursor-inner" id="cursorInner"></div>
+<div class="cursor cursor-glow" id="cursorGlow"></div>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="nav-logo">W<span>.</span>ALMUTAIRI</div>
+  <ul class="nav-links">
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Cases</a></li>
+    <li><a href="#experience">Career</a></li>
+    <li><a href="#certs">Certs</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <button class="nav-cta" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
+    <span class="dot"></span> Available for hire
+  </button>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <canvas id="heroCanvas"></canvas>
+  <div class="hero-content">
+    <div class="hero-badge gs-reveal"><i class="fas fa-shield-halved"></i> Cybersecurity Engineer</div>
+    <h1 class="hero-name gs-reveal">
+      <span>Wadhah</span><br>
+      <span class="gradient">Almutairi</span>
+    </h1>
+    <p class="hero-subtitle gs-reveal">
+      <span class="typewriter" id="typewriter"></span>
+    </p>
+    <div class="hero-pills gs-reveal">
+      <span class="hero-pill"><i class="fas fa-crosshairs" style="color:var(--critical)"></i> Pen Testing</span>
+      <span class="hero-pill"><i class="fas fa-chart-line" style="color:var(--cyan)"></i> SIEM</span>
+      <span class="hero-pill"><i class="fas fa-network-wired" style="color:var(--success)"></i> Active Directory</span>
+      <span class="hero-pill"><i class="fas fa-eye" style="color:var(--sky)"></i> XDR</span>
+      <span class="hero-pill"><i class="fas fa-robot" style="color:var(--purple)"></i> Automation</span>
+      <span class="hero-pill"><i class="fab fa-docker" style="color:var(--silver)"></i> Docker</span>
+    </div>
+    <div class="hero-cta gs-reveal">
+      <a href="#projects" class="btn-primary"><i class="fas fa-folder-open"></i> View Cases</a>
+      <a href="#contact" class="btn-secondary"><i class="fas fa-paper-plane"></i> Get in Touch</a>
+    </div>
+    <!-- Stats Bar -->
+    <div class="hero-stats gs-reveal">
+      <div class="hero-stat">
+        <span class="hero-stat-icon"><i class="fas fa-bug"></i></span>
+        <div class="hero-stat-value">50+</div>
+        <div class="hero-stat-label">Vulnerabilities Found</div>
+      </div>
+      <div class="hero-stat">
+        <span class="hero-stat-icon"><i class="fas fa-shield-halved"></i></span>
+        <div class="hero-stat-value">4</div>
+        <div class="hero-stat-label">Security Projects</div>
+      </div>
+      <div class="hero-stat">
+        <span class="hero-stat-icon"><i class="fas fa-certificate"></i></span>
+        <div class="hero-stat-value">CEH</div>
+        <div class="hero-stat-label">Certified Ethical Hacker</div>
+      </div>
+      <div class="hero-stat">
+        <span class="hero-stat-icon"><i class="fas fa-building-shield"></i></span>
+        <div class="hero-stat-value">KUNA</div>
+        <div class="hero-stat-label">Enterprise Security</div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <div class="hero-scroll-line"></div>
+    <span>Scroll</span>
+  </div>
+</section>
+
+<div class="glow-divider"></div>
+
+<!-- SKILLS -->
+<section class="section" id="skills">
+  <div class="section-label gs-reveal">01 — Expertise</div>
+  <h2 class="section-title gs-reveal">What I Do</h2>
+  <div class="skills-grid">
+    <div class="skill-card gs-reveal">
+      <div class="skill-icon sky"><i class="fas fa-crosshairs"></i></div>
+      <h3>Penetration Testing</h3>
+      <div class="skill-tags">
+        <span class="skill-tag">SQL Injection</span><span class="skill-tag">XSS</span>
+        <span class="skill-tag">CEH</span><span class="skill-tag">Vuln Assessment</span>
+      </div>
+    </div>
+    <div class="skill-card gs-reveal">
+      <div class="skill-icon cyan"><i class="fas fa-chart-line"></i></div>
+      <h3>SIEM Engineering</h3>
+      <div class="skill-tags">
+        <span class="skill-tag">Elastic Stack</span><span class="skill-tag">Winlogbeat</span>
+        <span class="skill-tag">Kibana</span><span class="skill-tag">Log Pipelines</span>
+      </div>
+    </div>
+    <div class="skill-card gs-reveal">
+      <div class="skill-icon success"><i class="fas fa-network-wired"></i></div>
+      <h3>Active Directory</h3>
+      <div class="skill-tags">
+        <span class="skill-tag">GPO</span><span class="skill-tag">Domain Controller</span>
+        <span class="skill-tag">Delegation</span><span class="skill-tag">Hardening</span>
+      </div>
+    </div>
+    <div class="skill-card gs-reveal">
+      <div class="skill-icon cerulean"><i class="fas fa-eye"></i></div>
+      <h3>XDR & Threat Intel</h3>
+      <div class="skill-tags">
+        <span class="skill-tag">Trend Micro</span><span class="skill-tag">Vision One</span>
+        <span class="skill-tag">EDR</span><span class="skill-tag">Endpoint</span>
+      </div>
+    </div>
+    <div class="skill-card gs-reveal">
+      <div class="skill-icon purple"><i class="fas fa-robot"></i></div>
+      <h3>Automation & AI</h3>
+      <div class="skill-tags">
+        <span class="skill-tag">Python</span><span class="skill-tag">PowerShell</span>
+        <span class="skill-tag">NLP</span><span class="skill-tag">ML</span>
+      </div>
+    </div>
+    <div class="skill-card gs-reveal">
+      <div class="skill-icon silver"><i class="fab fa-docker"></i></div>
+      <h3>DevSecOps</h3>
+      <div class="skill-tags">
+        <span class="skill-tag">Docker</span><span class="skill-tag">CI/CD</span>
+        <span class="skill-tag">Containers</span><span class="skill-tag">IaC</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="glow-divider"></div>
+
+<!-- PROJECTS — PRO CYBERSECURITY CASE FILE DISPLAY -->
+<section class="section" id="projects">
+  <div class="section-label gs-reveal">02 — Case Files</div>
+  <h2 class="section-title gs-reveal">Security Projects</h2>
+
+  <div class="projects-showcase">
+    <!-- Featured Critical Discovery -->
+    <div class="case-featured gs-reveal">
+      <div class="case-featured-header">
+        <div class="case-featured-icon"><i class="fas fa-skull-crossbones"></i></div>
+        <div>
+          <div class="case-severity severity-critical"><i class="fas fa-radiation"></i> Critical Severity</div>
+          <h3>Enterprise Vulnerability Discovery & Mitigation</h3>
+          <p>Discovered a critical security vulnerability in an enterprise system during authorized penetration testing. Executed rapid response and coordinated remediation, preventing a potential organizational breach.</p>
+        </div>
+      </div>
+      <div class="case-metrics">
+        <div class="case-metric">
+          <div class="case-metric-icon red"><i class="fas fa-shield-halved"></i></div>
+          <span>Organization Protected</span>
+        </div>
+        <div class="case-metric">
+          <div class="case-metric-icon red"><i class="fas fa-bolt"></i></div>
+          <span>Rapid Response</span>
+        </div>
+        <div class="case-metric">
+          <div class="case-metric-icon red"><i class="fas fa-file-shield"></i></div>
+          <span>CEH Report Delivered</span>
+        </div>
+        <div class="case-metric">
+          <div class="case-metric-icon red"><i class="fas fa-clock"></i></div>
+          <span>24h Resolution</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Case Cards Grid -->
+    <div class="cases-grid">
+      <!-- Case 001: XDR -->
+      <div class="case-card gs-reveal">
+        <div class="case-header">
+          <div class="case-status status-complete"><div class="case-status-dot"></div> Deployed</div>
+          <div class="case-id">CASE-001</div>
+        </div>
+        <div class="case-body">
+          <div class="case-icon ci-sky"><i class="fas fa-satellite-dish"></i></div>
+          <h3>Trend Micro Vision One (XDR)</h3>
+          <p>Integrated enterprise assets for unified threat visibility and automated incident response across KUNA's infrastructure.</p>
+          <div class="case-tech">
+            <span>XDR</span><span>Endpoints</span><span>Automation</span><span>Trend Micro</span>
+          </div>
+          <div class="case-impact">
+            <i class="fas fa-arrow-trend-up"></i> Full endpoint coverage achieved
+          </div>
+        </div>
+      </div>
+
+      <!-- Case 002: SIEM -->
+      <div class="case-card gs-reveal">
+        <div class="case-header">
+          <div class="case-status status-complete"><div class="case-status-dot"></div> Deployed</div>
+          <div class="case-id">CASE-002</div>
+        </div>
+        <div class="case-body">
+          <div class="case-icon ci-cyan"><i class="fas fa-database"></i></div>
+          <h3>Elastic Stack SIEM Pipeline</h3>
+          <p>Automated log extraction and parsing into structured databases using Python for real-time threat detection.</p>
+          <div class="case-tech">
+            <span>Elastic Stack</span><span>Python</span><span>Winlogbeat</span><span>Kibana</span>
+          </div>
+          <div class="case-impact">
+            <i class="fas fa-arrow-trend-up"></i> Real-time monitoring enabled
+          </div>
+        </div>
+      </div>
+
+      <!-- Case 003: WOL -->
+      <div class="case-card gs-reveal">
+        <div class="case-header">
+          <div class="case-status status-complete"><div class="case-status-dot"></div> Deployed</div>
+          <div class="case-id">CASE-003</div>
+        </div>
+        <div class="case-body">
+          <div class="case-icon ci-success"><i class="fas fa-tower-broadcast"></i></div>
+          <h3>Wake-on-LAN Enterprise</h3>
+          <p>Engineered WOL solution across multi-VLAN environments enabling remote patching and maintenance operations.</p>
+          <div class="case-tech">
+            <span>Networking</span><span>VLAN</span><span>Automation</span><span>PowerShell</span>
+          </div>
+          <div class="case-impact">
+            <i class="fas fa-arrow-trend-up"></i> Remote patching across all VLANs
+          </div>
+        </div>
+      </div>
+
+      <!-- Case 004: Reporting -->
+      <div class="case-card gs-reveal">
+        <div class="case-header">
+          <div class="case-status status-complete"><div class="case-status-dot"></div> Deployed</div>
+          <div class="case-id">CASE-004</div>
+        </div>
+        <div class="case-body">
+          <div class="case-icon ci-cerulean"><i class="fas fa-file-code"></i></div>
+          <h3>Security Report Automation</h3>
+          <p>Built CEH-style structured security reports with automated documentation and evidence collection workflows.</p>
+          <div class="case-tech">
+            <span>Python</span><span>CEH Framework</span><span>Reports</span><span>Automation</span>
+          </div>
+          <div class="case-impact">
+            <i class="fas fa-arrow-trend-up"></i> Report generation time reduced 80%
+          </div>
+        </div>
+      </div>
+
+      <!-- Case 005: Chatbot -->
+      <div class="case-card gs-reveal">
+        <div class="case-header">
+          <div class="case-status status-academic"><div class="case-status-dot"></div> Senior Project</div>
+          <div class="case-id">CASE-005</div>
+        </div>
+        <div class="case-body">
+          <div class="case-icon ci-purple"><i class="fas fa-brain"></i></div>
+          <h3>AI Multilingual Chatbot</h3>
+          <p>NLP-powered chatbot with custom datasets enabling multilingual student support at university scale.</p>
+          <div class="case-tech">
+            <span>Python</span><span>NLP</span><span>Machine Learning</span><span>TensorFlow</span>
+          </div>
+          <div class="case-impact">
+            <i class="fas fa-graduation-cap"></i> University senior project
+          </div>
+        </div>
+      </div>
+
+      <!-- Case 006: LogonTracer -->
+      <div class="case-card gs-reveal">
+        <div class="case-header">
+          <div class="case-status status-forensic"><div class="case-status-dot"></div> Forensics</div>
+          <div class="case-id">CASE-006</div>
+        </div>
+        <div class="case-body">
+          <div class="case-icon ci-silver"><i class="fas fa-diagram-project"></i></div>
+          <h3>LogonTracer — AD Visualization</h3>
+          <p>Graph-based analysis of Windows Active Directory logs with PageRank anomaly detection for threat hunting.</p>
+          <div class="case-tech">
+            <span>LogonTracer</span><span>Active Directory</span><span>Forensics</span><span>PageRank</span>
+          </div>
+          <div class="case-impact">
+            <i class="fas fa-magnifying-glass"></i> Anomaly detection operational
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="glow-divider"></div>
+
+<!-- EXPERIENCE -->
+<section class="section" id="experience">
+  <div class="section-label gs-reveal">03 — Career</div>
+  <h2 class="section-title gs-reveal">Experience</h2>
+  <div class="exp-list">
+    <div class="exp-card gs-reveal">
+      <div class="exp-header">
+        <div class="exp-info">
+          <h3>Cybersecurity & IT Engineer</h3>
+          <div class="company"><i class="fas fa-building-shield"></i> Kuwait News Agency (KUNA)</div>
+        </div>
+        <div class="exp-date">2024 — Present</div>
+      </div>
+      <div class="exp-highlights">
+        <div class="exp-highlight"><i class="fas fa-crosshairs"></i> Security assessments — SQL Injection, info disclosure</div>
+        <div class="exp-highlight"><i class="fas fa-file-shield"></i> CEH-level pen testing & reporting</div>
+        <div class="exp-highlight"><i class="fas fa-server"></i> Active Directory hardening & GPO security</div>
+        <div class="exp-highlight"><i class="fas fa-chart-bar"></i> Elastic Stack + Winlogbeat pipelines</div>
+        <div class="exp-highlight"><i class="fab fa-docker"></i> Docker for isolated testing environments</div>
+        <div class="exp-highlight"><i class="fas fa-tower-broadcast"></i> Wake-on-LAN across VLANs</div>
+      </div>
+    </div>
+    <div class="exp-card gs-reveal">
+      <div class="exp-header">
+        <div class="exp-info">
+          <h3>B.Sc. Computer Engineering</h3>
+          <div class="company"><i class="fas fa-graduation-cap"></i> American University of the Middle East</div>
+        </div>
+        <div class="exp-date">2019 — 2024</div>
+      </div>
+      <div class="exp-highlights">
+        <div class="exp-highlight"><i class="fas fa-brain"></i> Senior Project: AI Multilingual Chatbot</div>
+        <div class="exp-highlight"><i class="fas fa-code"></i> Machine Learning, NLP, Full-Stack Dev</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="glow-divider"></div>
+
+<!-- CERTIFICATIONS -->
+<section class="section" id="certs">
+  <div class="section-label gs-reveal">04 — Credentials</div>
+  <h2 class="section-title gs-reveal">Certifications</h2>
+  <div class="certs-grid">
+    <div class="cert-card gs-reveal">
+      <div class="cert-badge" style="background:var(--critical-dim);color:var(--critical)"><i class="fas fa-user-secret"></i></div>
+      <h3>Certified Ethical Hacker</h3>
+      <p>EC-Council — CEH</p>
+    </div>
+    <div class="cert-card gs-reveal">
+      <div class="cert-badge" style="background:var(--sky-dim);color:var(--sky)"><i class="fas fa-chart-bar"></i></div>
+      <h3>Data Science</h3>
+      <p>Coded Academy</p>
+    </div>
+    <div class="cert-card gs-reveal">
+      <div class="cert-badge" style="background:var(--cyan-dim);color:var(--cyan)"><i class="fas fa-code"></i></div>
+      <h3>Web Development</h3>
+      <p>Coded Academy</p>
+    </div>
+  </div>
+</section>
+
+<div class="glow-divider"></div>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="contact-grid">
+    <!-- Left: Text & Links -->
+    <div class="contact-left">
+      <div class="section-label gs-reveal">05 — Connect</div>
+      <h2 class="contact-title gs-reveal">Let's Talk Security</h2>
+      <p class="contact-sub gs-reveal">Open for opportunities, collaborations, and consulting.</p>
+      <div class="contact-links gs-reveal">
+        <a href="mailto:w.baazm@gmail.com" class="contact-link"><i class="fas fa-envelope"></i> w.baazm@gmail.com</a>
+        <a href="https://www.linkedin.com/in/wadha-a-685544322?utm_source=share_via&utm_content=profile&utm_medium=member_ios" target="_blank" rel="noopener noreferrer" class="contact-link"><i class="fab fa-linkedin"></i> LinkedIn</a>
+        <a href="javascript:void(0)" class="contact-link" onclick="window.print()"><i class="fas fa-download"></i> Download CV</a>
+      </div>
+    </div>
+    <!-- Right: Terminal -->
+    <div class="contact-right gs-reveal">
+      <div class="terminal">
+        <div class="terminal-bar">
+          <div class="terminal-dot red"></div>
+          <div class="terminal-dot yellow"></div>
+          <div class="terminal-dot green"></div>
+          <span class="terminal-title">wadhah@kuna:~</span>
+        </div>
+        <div class="terminal-body">
+          <span class="terminal-line"><span class="terminal-prompt">$ </span><span class="terminal-cmd">whoami</span></span>
+          <span class="terminal-line"><span class="terminal-output">cybersecurity_engineer</span></span>
+          <span class="terminal-line">&nbsp;</span>
+          <span class="terminal-line"><span class="terminal-prompt">$ </span><span class="terminal-cmd">cat credentials.txt</span></span>
+          <span class="terminal-line"><span class="terminal-key">CEH</span> <span class="terminal-val">Certified Ethical Hacker</span></span>
+          <span class="terminal-line"><span class="terminal-key">B.Eng</span> <span class="terminal-val">Computer Engineering — AUM</span></span>
+          <span class="terminal-line">&nbsp;</span>
+          <span class="terminal-line"><span class="terminal-prompt">$ </span><span class="terminal-cmd">nmap --top-skills</span></span>
+          <span class="terminal-line"><span class="terminal-header">PORT</span> <span class="terminal-header">SERVICE</span></span>
+          <span class="terminal-line"><span class="terminal-port">443</span>  <span class="terminal-val">Penetration Testing</span></span>
+          <span class="terminal-line"><span class="terminal-port">514</span>  <span class="terminal-val">SIEM Engineering</span></span>
+          <span class="terminal-line"><span class="terminal-port">389</span>  <span class="terminal-val">Active Directory</span></span>
+          <span class="terminal-line"><span class="terminal-port">5601</span> <span class="terminal-val">Elastic Stack</span></span>
+          <span class="terminal-line">&nbsp;</span>
+          <span class="terminal-line"><span class="terminal-prompt">$ </span><span class="terminal-blink">_</span></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span>&copy; 2026 Wadhah Almutairi</span>
+  <span>Kuwait</span>
+</footer>
+
+<!-- GSAP -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script>
+// ═══ GSAP SCROLL ANIMATIONS ═══
+gsap.registerPlugin(ScrollTrigger);
+
+// Hero stagger — animate TO visible
+gsap.to('.hero .gs-reveal', {
+  y: 0, opacity: 1, duration: 1, stagger: 0.15, ease: 'power3.out', delay: 0.3
+});
+
+// Sections — staggered card reveals
+document.querySelectorAll('.section, .contact').forEach(section => {
+  const els = section.querySelectorAll('.gs-reveal');
+  if (!els.length) return;
+  gsap.to(els, {
+    scrollTrigger: { trigger: section, start: 'top 80%', toggleActions: 'play none none none' },
+    y: 0, opacity: 1, duration: 0.8, stagger: 0.1, ease: 'power2.out'
+  });
+});
+
+// Scroll progress bar
+gsap.to('#scrollProgress', {
+  scrollTrigger: { trigger: 'body', start: 'top top', end: 'bottom bottom', scrub: 0.3 },
+  width: '100%', ease: 'none'
+});
+
+// Nav active link highlight
+const sections = document.querySelectorAll('.section, .contact');
+const navLinks = document.querySelectorAll('.nav-links a');
+sections.forEach(sec => {
+  ScrollTrigger.create({
+    trigger: sec,
+    start: 'top center',
+    end: 'bottom center',
+    onEnter: () => setActiveNav(sec.id),
+    onEnterBack: () => setActiveNav(sec.id)
+  });
+});
+function setActiveNav(id) {
+  navLinks.forEach(a => {
+    const isActive = a.getAttribute('href') === '#' + id;
+    a.classList.toggle('active', isActive);
+  });
+}
+
+// ═══ PARTICLE CANVAS — Molecular Network (inspired by artwork's interconnected nodes) ═══
+const canvas = document.getElementById('heroCanvas');
+const ctx = canvas.getContext('2d');
+const dpr = window.devicePixelRatio || 1;
+let particles = [], mouseX = -1000, mouseY = -1000;
+const CONNECT_DIST = 130;
+const MOUSE_DIST = 200;
+
+function resizeCanvas() {
+  const hero = document.getElementById('hero');
+  canvas.width = hero.offsetWidth * dpr;
+  canvas.height = hero.offsetHeight * dpr;
+  canvas.style.width = hero.offsetWidth + 'px';
+  canvas.style.height = hero.offsetHeight + 'px';
+  ctx.scale(dpr, dpr);
+}
+
+function initParticles() {
+  particles = [];
+  const w = canvas.offsetWidth, h = canvas.offsetHeight;
+  const count = Math.min(80, Math.floor(w / 16));
+  for (let i = 0; i < count; i++) {
+    particles.push({
+      x: Math.random() * w,
+      y: Math.random() * h,
+      size: Math.random() * 2 + 0.5,
+      dx: (Math.random() - 0.5) * 0.35,
+      dy: (Math.random() - 0.5) * 0.35,
+      alpha: Math.random() * 0.5 + 0.15,
+      pulse: Math.random() * Math.PI * 2
+    });
+  }
+}
+
+function animateParticles() {
+  const w = canvas.offsetWidth, h = canvas.offsetHeight;
+  ctx.clearRect(0, 0, w, h);
+  const time = Date.now() * 0.001;
+
+  particles.forEach(p => {
+    p.pulse += 0.015;
+    const pulseAlpha = p.alpha + Math.sin(p.pulse) * 0.1;
+
+    // Mouse attraction (inspired by the molecular connections in artwork)
+    const distX = mouseX - p.x, distY = mouseY - p.y;
+    const dist = Math.sqrt(distX * distX + distY * distY);
+    if (dist < MOUSE_DIST && dist > 0) {
+      p.x += distX * 0.005;
+      p.y += distY * 0.005;
+    }
+
+    p.x += p.dx; p.y += p.dy;
+    if (p.x < 0) p.x = w; if (p.x > w) p.x = 0;
+    if (p.y < 0) p.y = h; if (p.y > h) p.y = 0;
+
+    // Glow ring (like the silver rings in the artwork)
+    ctx.beginPath();
+    ctx.arc(p.x, p.y, p.size + 4, 0, Math.PI * 2);
+    ctx.fillStyle = `rgba(74,173,219,${pulseAlpha * 0.08})`;
+    ctx.fill();
+
+    // Core particle
+    ctx.beginPath();
+    ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+    ctx.fillStyle = `rgba(74,173,219,${pulseAlpha})`;
+    ctx.fill();
+  });
+
+  // Connection lines (like the molecular network in the artwork)
+  for (let i = 0; i < particles.length; i++) {
+    for (let j = i + 1; j < particles.length; j++) {
+      const dx = particles[i].x - particles[j].x;
+      const dy = particles[i].y - particles[j].y;
+      const dist = Math.sqrt(dx * dx + dy * dy);
+      if (dist < CONNECT_DIST) {
+        const alpha = (1 - dist / CONNECT_DIST) * 0.12;
+        ctx.beginPath();
+        ctx.moveTo(particles[i].x, particles[i].y);
+        ctx.lineTo(particles[j].x, particles[j].y);
+        ctx.strokeStyle = `rgba(74,173,219,${alpha})`;
+        ctx.lineWidth = 0.6;
+        ctx.stroke();
+      }
+    }
+    // Connect to mouse with brighter cyan (like the cyan dots in artwork)
+    if (mouseX > 0) {
+      const mdx = particles[i].x - mouseX;
+      const mdy = particles[i].y - mouseY;
+      const mDist = Math.sqrt(mdx * mdx + mdy * mdy);
+      if (mDist < MOUSE_DIST) {
+        const alpha = (1 - mDist / MOUSE_DIST) * 0.2;
+        ctx.beginPath();
+        ctx.moveTo(particles[i].x, particles[i].y);
+        ctx.lineTo(mouseX, mouseY);
+        ctx.strokeStyle = `rgba(0,212,255,${alpha})`;
+        ctx.lineWidth = 0.8;
+        ctx.stroke();
+      }
+    }
+  }
+
+  requestAnimationFrame(animateParticles);
+}
+
+resizeCanvas(); initParticles(); animateParticles();
+window.addEventListener('resize', () => { resizeCanvas(); initParticles(); });
+document.getElementById('hero').addEventListener('mousemove', e => {
+  canvas.style.pointerEvents = 'auto';
+  const rect = canvas.getBoundingClientRect();
+  mouseX = e.clientX - rect.left; mouseY = e.clientY - rect.top;
+  canvas.style.pointerEvents = 'none';
+});
+document.getElementById('hero').addEventListener('mouseleave', () => {
+  mouseX = -1000; mouseY = -1000;
+});
+
+// ═══ CUSTOM CURSOR ═══
+const cursorOuter = document.getElementById('cursorOuter');
+const cursorInner = document.getElementById('cursorInner');
+const cursorGlow = document.getElementById('cursorGlow');
+let cmx = 0, cmy = 0, cox = 0, coy = 0, cgx = 0, cgy = 0;
+
+document.addEventListener('mousemove', e => {
+  cmx = e.clientX; cmy = e.clientY;
+  cursorInner.style.left = cmx + 'px'; cursorInner.style.top = cmy + 'px';
+});
+
+(function cursorLoop() {
+  cox += (cmx - cox) * 0.12; coy += (cmy - coy) * 0.12;
+  cgx += (cmx - cgx) * 0.05; cgy += (cmy - cgy) * 0.05;
+  cursorOuter.style.left = cox + 'px'; cursorOuter.style.top = coy + 'px';
+  cursorGlow.style.left = cgx + 'px'; cursorGlow.style.top = cgy + 'px';
+  requestAnimationFrame(cursorLoop);
+})();
+
+// Cursor hover states
+document.querySelectorAll('a,button,.skill-card,.case-card,.case-featured,.cert-card,.hero-pill,.contact-link,.exp-card,.hero-stat,.terminal').forEach(el => {
+  el.addEventListener('mouseenter', () => cursorOuter.classList.add('hover'));
+  el.addEventListener('mouseleave', () => cursorOuter.classList.remove('hover'));
+});
+
+// ═══ CARD MOUSE GLOW + 3D TILT ═══
+document.querySelectorAll('.skill-card,.case-card').forEach(card => {
+  card.addEventListener('mousemove', e => {
+    const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left, y = e.clientY - rect.top;
+    card.style.setProperty('--mx', (x / rect.width * 100) + '%');
+    card.style.setProperty('--my', (y / rect.height * 100) + '%');
+    // 3D tilt
+    const cx = rect.width / 2, cy = rect.height / 2;
+    const rx = (y - cy) / 25, ry = (cx - x) / 25;
+    card.style.transform = `perspective(800px) rotateX(${rx}deg) rotateY(${ry}deg) translateY(-4px) scale(1.01)`;
+  });
+  card.addEventListener('mouseleave', () => {
+    card.style.transform = '';
+  });
+});
+
+// ═══ TYPEWRITER ═══
+const phrases = [
+  'Securing enterprise systems.',
+  'Breaking what needs breaking.',
+  'SIEM pipelines & threat detection.',
+  'Ethical hacking & vulnerability research.'
+];
+let phraseIdx = 0, charIdx = 0, deleting = false;
+const tw = document.getElementById('typewriter');
+
+function typewrite() {
+  const current = phrases[phraseIdx];
+  if (!deleting) {
+    tw.textContent = current.substring(0, charIdx + 1);
+    charIdx++;
+    if (charIdx === current.length) { setTimeout(() => { deleting = true; typewrite(); }, 2000); return; }
+    setTimeout(typewrite, 55);
+  } else {
+    tw.textContent = current.substring(0, charIdx - 1);
+    charIdx--;
+    if (charIdx === 0) { deleting = false; phraseIdx = (phraseIdx + 1) % phrases.length; setTimeout(typewrite, 400); return; }
+    setTimeout(typewrite, 25);
+  }
+}
+setTimeout(typewrite, 800);
+
+// ═══ DECRYPT EFFECT ON PROJECT TITLES ═══
+document.querySelectorAll('.case-card h3, .case-featured h3').forEach(el => {
+  const original = el.textContent;
+  const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789@#$%&*<>';
+  el.addEventListener('mouseenter', () => {
+    let iter = 0;
+    const interval = setInterval(() => {
+      el.textContent = original.split('').map((c, i) =>
+        i < iter ? original[i] : c === ' ' ? ' ' : chars[Math.floor(Math.random() * chars.length)]
+      ).join('');
+      iter += 1.5;
+      if (iter >= original.length) { el.textContent = original; clearInterval(interval); }
+    }, 25);
+  });
+});
+
+// ═══ NAV SCROLL ═══
+document.querySelectorAll('nav a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    e.preventDefault();
+    document.querySelector(a.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
+  });
+});
+window.addEventListener('scroll', () => {
+  document.getElementById('nav').style.background = scrollY > 80 ? 'rgba(10,14,26,0.92)' : 'rgba(10,14,26,0.6)';
+});
+</script>
+</body>
+</html>
