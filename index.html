@@ -379,17 +379,19 @@ footer span{font-family:var(--mono);font-size:11px;color:var(--text-tertiary)}
   .btn-primary{background:linear-gradient(135deg,var(--cerulean),var(--sky))!important;color:#fff!important}
   .btn-secondary{border:1px solid var(--border)!important;color:var(--text-secondary)!important}
 
-  /* ── Hero Stats ── */
-  .hero-stats{background:var(--bg-card)!important;border:1px solid var(--border)!important;margin-top:32px!important}
-  .hero-stat{padding:24px 16px!important}
+  /* ── Hero Stats — responsive for mobile print ── */
+  .hero-stats{background:rgba(16,24,48,0.9)!important;border:1px solid var(--border)!important;margin-top:32px!important;grid-template-columns:repeat(2,1fr)!important}
+  .hero-stat{padding:20px 14px!important}
   .hero-stat-icon{color:var(--success)!important}
-  .hero-stat-value{color:var(--text)!important}
+  .hero-stat-value{color:var(--text)!important;font-size:24px!important}
   .hero-stat-label{color:var(--text-tertiary)!important}
   .hero-stat:not(:last-child)::after{background:var(--border)!important}
+  .hero-stat:nth-child(2)::after{display:none!important}
+  .hero-stat:nth-child(1),.hero-stat:nth-child(2){border-bottom:1px solid var(--border)!important}
 
   /* ── Terminal (inside contact) ── */
-  .terminal{background:rgba(12,16,28,0.9)!important;border:1px solid var(--border)!important;box-shadow:none!important}
-  .terminal-bar{background:rgba(16,20,32,0.8)!important;border-bottom:1px solid var(--border)!important}
+  .terminal{background:rgba(12,16,28,0.95)!important;border:1px solid var(--border)!important;box-shadow:none!important}
+  .terminal-bar{background:rgba(16,20,32,0.9)!important;border-bottom:1px solid var(--border)!important}
   .terminal-dot.red{background:#FF5F56!important}
   .terminal-dot.yellow{background:#FFBD2E!important}
   .terminal-dot.green{background:#27C93F!important}
@@ -406,14 +408,22 @@ footer span{font-family:var(--mono);font-size:11px;color:var(--text-tertiary)}
   .glow-divider{display:none!important}
 
   /* ── Section defaults ── */
-  .gs-reveal{opacity:1!important;transform:none!important}
+  .gs-reveal{opacity:1!important;transform:none!important;visibility:visible!important}
 
-  /* ── Skills — starts on new page ── */
-  #skills{padding:60px 24px 40px!important;background:var(--bg)!important;page-break-before:always!important;break-before:page!important;page-break-after:always!important;break-after:page!important;max-width:1200px!important;margin:0 auto!important}
+  /* ── Hide decorative pseudo-elements that overlap content ── */
+  .case-featured::before{display:none!important}
+  .case-featured-icon::after{display:none!important}
+  .cert-card::before{display:none!important}
+  .skill-card::before{display:none!important}
+  .case-card::before{display:none!important}
+  .exp-card::before{display:none!important}
+
+  /* ── Skills — starts on new page, no trailing page break ── */
+  #skills{padding:60px 24px 40px!important;background:var(--bg)!important;page-break-before:always!important;break-before:page!important;max-width:1200px!important;margin:0 auto!important}
   #skills .section-label{color:var(--sky)!important}
   #skills .section-title{color:var(--text)!important;margin-bottom:40px!important}
   .skills-grid{grid-template-columns:repeat(2,1fr)!important;gap:16px!important}
-  .skill-card{background:var(--bg-card)!important;border:1px solid var(--border)!important;box-shadow:none!important;break-inside:avoid!important;padding:24px!important}
+  .skill-card{background:rgba(16,24,48,0.9)!important;border:1px solid var(--border)!important;box-shadow:none!important;break-inside:avoid!important;padding:24px!important}
   .skill-card h3{color:var(--text)!important}
   .skill-tag{background:rgba(74,173,219,0.04)!important;color:var(--text-secondary)!important;border:1px solid var(--border)!important}
   .skill-icon.sky{background:var(--sky-dim)!important;color:var(--sky)!important}
@@ -427,7 +437,7 @@ footer span{font-family:var(--mono);font-size:11px;color:var(--text-tertiary)}
   #projects{padding:60px 24px 40px!important;background:var(--bg)!important;page-break-before:always!important;break-before:page!important;max-width:1200px!important;margin:0 auto!important}
   #projects .section-label{color:var(--sky)!important}
   #projects .section-title{color:var(--text)!important;margin-bottom:40px!important}
-  .case-featured{background:linear-gradient(135deg,rgba(16,24,48,0.8),rgba(255,71,87,0.03))!important;border:1px solid rgba(255,71,87,0.15)!important;box-shadow:none!important;break-inside:avoid!important;page-break-after:always!important;break-after:page!important;padding:36px!important}
+  .case-featured{background:linear-gradient(135deg,rgba(16,24,48,0.9),rgba(255,71,87,0.06))!important;border:1px solid rgba(255,71,87,0.15)!important;box-shadow:none!important;break-inside:avoid!important;padding:36px!important}
   .case-featured h3{color:var(--text)!important}
   .case-featured p{color:var(--text-secondary)!important}
   .case-severity.severity-critical{background:var(--critical-dim)!important;color:var(--critical)!important;border:1px solid rgba(255,71,87,0.2)!important}
@@ -435,7 +445,7 @@ footer span{font-family:var(--mono);font-size:11px;color:var(--text-tertiary)}
   .case-metric span{color:var(--text-secondary)!important}
   .case-featured-icon{background:var(--critical-dim)!important;color:var(--critical)!important}
   .cases-grid{grid-template-columns:1fr!important;gap:20px!important}
-  .case-card{background:var(--bg-card)!important;border:1px solid var(--border)!important;box-shadow:none!important;break-inside:avoid!important}
+  .case-card{background:rgba(16,24,48,0.9)!important;border:1px solid var(--border)!important;box-shadow:none!important;break-inside:avoid!important}
   .case-card h3{color:var(--text)!important}
   .case-card p{color:var(--text-secondary)!important}
   .case-header{border-bottom:1px solid var(--border)!important}
@@ -456,35 +466,38 @@ footer span{font-family:var(--mono);font-size:11px;color:var(--text-tertiary)}
   .case-impact{color:var(--text-tertiary)!important;border-top:1px solid var(--border)!important}
   .case-impact i{color:var(--sky)!important}
 
-  /* ── Experience — starts on new page ── */
-  #experience{padding:60px 24px 40px!important;background:var(--bg)!important;page-break-before:always!important;break-before:page!important;page-break-after:always!important;break-after:page!important;max-width:1200px!important;margin:0 auto!important}
+  /* ── Experience — starts on new page, no trailing page break ── */
+  #experience{padding:60px 24px 40px!important;background:var(--bg)!important;page-break-before:always!important;break-before:page!important;max-width:1200px!important;margin:0 auto!important}
   #experience .section-label{color:var(--sky)!important}
   #experience .section-title{color:var(--text)!important;margin-bottom:40px!important}
-  .exp-card{background:var(--bg-card)!important;border:1px solid var(--border)!important;box-shadow:none!important;break-inside:avoid!important;margin-bottom:20px!important}
+  .exp-card{background:rgba(16,24,48,0.9)!important;border:1px solid var(--border)!important;box-shadow:none!important;break-inside:avoid!important;margin-bottom:20px!important}
   .exp-info h3{color:var(--text)!important}
   .exp-info .company{color:var(--text-secondary)!important}
   .exp-info .company i{color:var(--sky)!important}
   .exp-date{color:var(--sky)!important;background:var(--sky-dim)!important;border:1px solid var(--sky-dim)!important}
   .exp-highlight{color:var(--text-secondary)!important}
   .exp-highlight i{color:var(--sky)!important}
+  .exp-highlights{grid-template-columns:1fr!important}
 
-  /* ── Certifications — starts on new page ── */
-  #certs{padding:60px 24px 40px!important;background:var(--bg)!important;page-break-before:always!important;break-before:page!important;page-break-after:always!important;break-after:page!important;max-width:1200px!important;margin:0 auto!important}
+  /* ── Certifications — starts on new page, no trailing page break ── */
+  #certs{padding:60px 24px 40px!important;background:var(--bg)!important;page-break-before:always!important;break-before:page!important;max-width:1200px!important;margin:0 auto!important}
   #certs .section-label{color:var(--sky)!important}
   #certs .section-title{color:var(--text)!important;margin-bottom:40px!important}
   .certs-grid{grid-template-columns:repeat(3,1fr)!important;gap:16px!important}
-  .cert-card{background:var(--bg-card)!important;border:1px solid var(--border)!important;box-shadow:none!important;break-inside:avoid!important}
+  .cert-card{background:rgba(16,24,48,0.9)!important;border:1px solid rgba(74,173,219,0.15)!important;box-shadow:none!important;break-inside:avoid!important}
   .cert-card h3{color:var(--text)!important}
   .cert-card p{color:var(--text-tertiary)!important}
+  .cert-badge{position:relative!important;z-index:1!important}
 
-  /* ── Contact — starts on new page ── */
+  /* ── Contact — starts on new page, responsive grid ── */
   .contact{background:var(--bg)!important;page-break-before:always!important;break-before:page!important;padding:60px 24px!important}
-  .contact-grid{display:grid!important;grid-template-columns:1fr 1fr!important;gap:32px!important;align-items:center!important}
-  .contact-left .section-label{color:var(--sky)!important}
+  .contact-grid{display:grid!important;grid-template-columns:1fr!important;gap:32px!important;align-items:center!important}
+  .contact-left{text-align:center!important}
+  .contact-left .section-label{color:var(--sky)!important;justify-content:center!important}
   .contact-title{color:var(--text)!important}
   .contact-sub{color:var(--text-secondary)!important}
-  .contact-links{flex-direction:row!important;flex-wrap:wrap!important}
-  .contact-link{background:var(--bg-card)!important;border:1px solid var(--border)!important;color:var(--text)!important;box-shadow:none!important}
+  .contact-links{flex-direction:column!important;align-items:center!important}
+  .contact-link{background:rgba(16,24,48,0.9)!important;border:1px solid var(--border)!important;color:var(--text)!important;box-shadow:none!important}
   .contact-link i{color:var(--sky)!important}
   .contact-right{display:flex!important}
 
